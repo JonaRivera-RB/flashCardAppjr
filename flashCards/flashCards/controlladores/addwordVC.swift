@@ -40,7 +40,7 @@ class addwordVC: UIViewController {
             }
         }
         else {
-            let alert = UIAlertAction(title: "Ups", style: .default, handler: nil)
+            let alert = UIAlertAction(title: "Ok", style: .default, handler: nil)
             let alertContent = UIAlertController(title: "Datos incompletos 🤕", message: "Al parecer te faltan datos por llenar🤔", preferredStyle: .alert)
             alertContent.addAction(alert)
             present(alertContent, animated: true, completion: nil)

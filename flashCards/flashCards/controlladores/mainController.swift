@@ -27,10 +27,13 @@ class mainController: UIViewController {
     }
     @IBAction func playBtnWasPressed(_ sender: Any) {
         if words == 0 {
-            print("no hay palabras")
+            let alert = UIAlertController(title: "Ups", message: "Tienes que agregar palabras antes de poder jugar.", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(alertAction)
+            present(alert, animated: true, completion: nil)
         }
         else {
-            print("nueva pantalla")
+            performSegue(withIdentifier: "showPlay", sender: self)
         }
     }
 }
