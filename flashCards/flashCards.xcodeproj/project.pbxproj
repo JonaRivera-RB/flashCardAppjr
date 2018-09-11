@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131423DE21137EDE00A041CE /* myGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131423DD21137EDE00A041CE /* myGameVC.swift */; };
+		134A737121310F8C008629E5 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A737021310F8C008629E5 /* extensions.swift */; };
+		134A737521311538008629E5 /* groupsColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A737421311538008629E5 /* groupsColor.swift */; };
+		138234F021475EBF00D5EACE /* scoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138234EF21475EBF00D5EACE /* scoreVC.swift */; };
 		13AEA998211006B50048696F /* addwordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AEA997211006B50048696F /* addwordVC.swift */; };
 		13BA8EC7210EA85B00FBEAF5 /* wordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA8EC6210EA85B00FBEAF5 /* wordCell.swift */; };
+		13BAF97C2125A8EE00ED7A8E /* groupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAF97B2125A8EE00ED7A8E /* groupCell.swift */; };
 		13F196ED210A3DEE0033EF05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F196EC210A3DEE0033EF05 /* AppDelegate.swift */; };
 		13F196EF210A3DEE0033EF05 /* mainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F196EE210A3DEE0033EF05 /* mainController.swift */; };
 		13F196F2210A3DEE0033EF05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F196F0210A3DEE0033EF05 /* Main.storyboard */; };
@@ -19,12 +24,18 @@
 		13F19706210A4C630033EF05 /* vistaBoton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F19705210A4C630033EF05 /* vistaBoton.swift */; };
 		13F19708210A4FB20033EF05 /* vistaBotones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F19707210A4FB20033EF05 /* vistaBotones.swift */; };
 		13F1970A210A8A150033EF05 /* myWordsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F19709210A8A150033EF05 /* myWordsVC.swift */; };
+		13F7E61221253DD200C68CA6 /* myGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F7E61121253DD200C68CA6 /* myGroupsVC.swift */; };
 		C265B405851B7E8854858F52 /* Pods_flashCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FCF9AC7F30D1E5687A42C17 /* Pods_flashCards.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		131423DD21137EDE00A041CE /* myGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myGameVC.swift; sourceTree = "<group>"; };
+		134A737021310F8C008629E5 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
+		134A737421311538008629E5 /* groupsColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groupsColor.swift; sourceTree = "<group>"; };
+		138234EF21475EBF00D5EACE /* scoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scoreVC.swift; sourceTree = "<group>"; };
 		13AEA997211006B50048696F /* addwordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addwordVC.swift; sourceTree = "<group>"; };
 		13BA8EC6210EA85B00FBEAF5 /* wordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordCell.swift; sourceTree = "<group>"; };
+		13BAF97B2125A8EE00ED7A8E /* groupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groupCell.swift; sourceTree = "<group>"; };
 		13F196E9210A3DED0033EF05 /* flashCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flashCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F196EC210A3DEE0033EF05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		13F196EE210A3DEE0033EF05 /* mainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainController.swift; sourceTree = "<group>"; };
@@ -37,6 +48,7 @@
 		13F19705210A4C630033EF05 /* vistaBoton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vistaBoton.swift; sourceTree = "<group>"; };
 		13F19707210A4FB20033EF05 /* vistaBotones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vistaBotones.swift; sourceTree = "<group>"; };
 		13F19709210A8A150033EF05 /* myWordsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myWordsVC.swift; sourceTree = "<group>"; };
+		13F7E61121253DD200C68CA6 /* myGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myGroupsVC.swift; sourceTree = "<group>"; };
 		2EB8D8FE548A4A96FAF4F675 /* Pods-flashCards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashCards.release.xcconfig"; path = "Pods/Target Support Files/Pods-flashCards/Pods-flashCards.release.xcconfig"; sourceTree = "<group>"; };
 		6FCF9AC7F30D1E5687A42C17 /* Pods_flashCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flashCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91E80B9E493E38F2BC7E677 /* Pods-flashCards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashCards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flashCards/Pods-flashCards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -58,8 +70,19 @@
 			isa = PBXGroup;
 			children = (
 				13BA8EC6210EA85B00FBEAF5 /* wordCell.swift */,
+				13BAF97B2125A8EE00ED7A8E /* groupCell.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		13BB3A3121310F2A00E60CF9 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				13F196F3210A3DEE0033EF05 /* flashCards.xcdatamodeld */,
+				134A737021310F8C008629E5 /* extensions.swift */,
+				134A737421311538008629E5 /* groupsColor.swift */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 		13F196E0210A3DED0033EF05 = {
@@ -83,6 +106,7 @@
 		13F196EB210A3DED0033EF05 /* flashCards */ = {
 			isa = PBXGroup;
 			children = (
+				13BB3A3121310F2A00E60CF9 /* data */,
 				13BA8EC4210EA82B00FBEAF5 /* views */,
 				13F19702210A4AAB0033EF05 /* design */,
 				13F19701210A4AA00033EF05 /* controlladores */,
@@ -91,7 +115,6 @@
 				13F196F6210A3DEF0033EF05 /* Assets.xcassets */,
 				13F196F8210A3DEF0033EF05 /* LaunchScreen.storyboard */,
 				13F196FB210A3DEF0033EF05 /* Info.plist */,
-				13F196F3210A3DEE0033EF05 /* flashCards.xcdatamodeld */,
 			);
 			path = flashCards;
 			sourceTree = "<group>";
@@ -102,6 +125,9 @@
 				13F196EE210A3DEE0033EF05 /* mainController.swift */,
 				13F19709210A8A150033EF05 /* myWordsVC.swift */,
 				13AEA997211006B50048696F /* addwordVC.swift */,
+				131423DD21137EDE00A041CE /* myGameVC.swift */,
+				13F7E61121253DD200C68CA6 /* myGroupsVC.swift */,
+				138234EF21475EBF00D5EACE /* scoreVC.swift */,
 			);
 			path = controlladores;
 			sourceTree = "<group>";
@@ -222,7 +248,7 @@
 		};
 		FFF0BAD0E2CA8321E3D03314 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -247,13 +273,19 @@
 			files = (
 				13F19708210A4FB20033EF05 /* vistaBotones.swift in Sources */,
 				13AEA998211006B50048696F /* addwordVC.swift in Sources */,
+				13F7E61221253DD200C68CA6 /* myGroupsVC.swift in Sources */,
 				13F196EF210A3DEE0033EF05 /* mainController.swift in Sources */,
 				13F196F5210A3DEE0033EF05 /* flashCards.xcdatamodeld in Sources */,
+				131423DE21137EDE00A041CE /* myGameVC.swift in Sources */,
 				13F19706210A4C630033EF05 /* vistaBoton.swift in Sources */,
+				13BAF97C2125A8EE00ED7A8E /* groupCell.swift in Sources */,
+				134A737521311538008629E5 /* groupsColor.swift in Sources */,
 				13F1970A210A8A150033EF05 /* myWordsVC.swift in Sources */,
 				13BA8EC7210EA85B00FBEAF5 /* wordCell.swift in Sources */,
+				138234F021475EBF00D5EACE /* scoreVC.swift in Sources */,
 				13F196ED210A3DEE0033EF05 /* AppDelegate.swift in Sources */,
 				13F19704210A4ACA0033EF05 /* sombraVista.swift in Sources */,
+				134A737121310F8C008629E5 /* extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +433,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 967D57A66Z;
 				INFOPLIST_FILE = flashCards/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanRivera.flashCards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -417,7 +452,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 967D57A66Z;
 				INFOPLIST_FILE = flashCards/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanRivera.flashCards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

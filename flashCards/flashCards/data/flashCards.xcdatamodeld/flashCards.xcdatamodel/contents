@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Groups" representedClassName="Groups" syncable="YES" codeGenerationType="class">
+        <attribute name="colorHex" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="group" attributeType="String" syncable="YES"/>
+        <relationship name="groupRelation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Words" inverseName="wordsRelation" inverseEntity="Words" syncable="YES"/>
+    </entity>
     <entity name="Words" representedClassName="Words" syncable="YES" codeGenerationType="class">
         <attribute name="goal" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="goalCompletion" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="translate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="wordsRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Groups" inverseName="groupRelation" inverseEntity="Groups" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Words" positionX="-63" positionY="-18" width="128" height="105"/>
+        <element name="Groups" positionX="-261" positionY="-9" width="128" height="88"/>
+        <element name="Words" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

@@ -20,8 +20,9 @@ class myWordsVC: UIViewController {
     @IBOutlet weak var viewUndo: UIView!
     @IBOutlet weak var cancelBtn: UIButton!
     
-    var words:[Words] = []
+    var words = [Words]()
     var wordSave:Words!
+    var selectedGroup : Groups?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,25 +36,30 @@ class myWordsVC: UIViewController {
         fetchCoreDataObjects()
         wordsTableView.reloadData()
     }
+    
     func fetchCoreDataObjects(){
         self.fetch { (completion) in
             if completion {
                 if words.count >= 1 {
                     UserDefaults.standard.integer(forKey: "mywords")
-                    UserDefaults.standard.set(words.count, forKey: "mywords")
+                    UserDefaults.standard.set(words.count , forKey: "mywords")
                     wordsTableView.isHidden = false
                 }
              else {
-                    UserDefaults.standard.set(words.count, forKey: "mywords")
-                wordsTableView.isHidden = true
+                    UserDefaults.standard.set(0, forKey: "mywords")
+                    wordsTableView.isHidden = true
             }
         }
     }
     }
     
     @IBAction func addWordBtnWasPressed(_ sender: Any) {
+        performSegue(withIdentifier: "addWord", sender: self)
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let wordVC = segue.destination as! addwordVC
+        wordVC.grupoSeleccionado = selectedGroup!
+    }
     @IBAction func backBtnWassPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -84,6 +90,9 @@ extension myWordsVC: UITableViewDelegate, UITableViewDataSource {
         //configuramos la celda con lo que telga la constante word y lo regresamos
         cell.configureCell(word: word)
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -136,11 +145,13 @@ extension myWordsVC {
     }
     
     //funcion para obtener los datos de la base de datos
-    func fetch(completion: (_ completion: Bool) ->()) {
+    func fetch(with request: NSFetchRequest<Words> = Words.fetchRequest(), completion: (_ completion: Bool) ->()) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        let fetchRequest = NSFetchRequest<Words>(entityName: "Words")
+       // let fetchRequest = NSFetchRequest<Words>(entityName: "Words")
+        let predicate = NSPredicate(format: "wordsRelation.group MATCHES %@", selectedGroup!.group!)
+        request.predicate = predicate
         do {
-           words = try managedContext.fetch(fetchRequest)
+            words = try managedContext.fetch(request)
             print("successfully fetched data")
             completion(true)
         } catch {

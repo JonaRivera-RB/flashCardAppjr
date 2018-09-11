@@ -9,12 +9,14 @@
 import UIKit
 
 class addwordVC: UIViewController {
-
+    
     @IBOutlet weak var wordTxt: UITextField!
     @IBOutlet weak var traduccionTxt: UITextField!
     @IBOutlet var moreLessbtn: [UIButton]!
     @IBOutlet weak var goalLbl: UILabel!
     var goal = 1
+    var grupoSeleccionado:Groups!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         goalLbl.text = String(goal)
@@ -70,7 +72,7 @@ class addwordVC: UIViewController {
         word.translate = traduccionTxt.text
         word.goal = Int32(0)
         word.goalCompletion = Int32(goalLbl.text!)!
-        
+        word.wordsRelation = grupoSeleccionado
         do {
             try managedContext.save()
             print("successfully saved data")
