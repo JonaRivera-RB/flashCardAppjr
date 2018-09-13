@@ -69,7 +69,7 @@ class mainController: UIViewController {
     }
     //funcion para crear una alerta
     func showAlert(){
-        let alert = UIAlertController(title: "Ups", message: "Tienes que agregar palabras antes de poder jugar.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Ups", message: "Tienes que agregar mas palabras antes de poder jugar.", preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(alertAction)
         present(alert, animated: true, completion: nil)
@@ -126,7 +126,7 @@ class mainController: UIViewController {
     func fetchCoreDataObjectsGroupsWords() {
         self.loadDataCoreDataGroup { (completion) in
             if completion {
-                if words.count >= 1 {
+                if words.count >= 3 {
                     print(words)
                     performSegue(withIdentifier: "showPlay", sender: self)
                 } else {

@@ -18,12 +18,13 @@ class scoreVC: UIViewController {
     var recordd = 0
     var correct = 0
     var incorrect = 0
-    
+    var learned = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         correctAnswereLbl.text = String(correct)
         incorrectAnswerLbl.text = String(incorrect)
         recordLbl.text = String(recordd)
+        learnedLbl.text = String(learned)
 
     }
     @IBAction func backWasPressed(_ sender: Any) {
@@ -32,12 +33,12 @@ class scoreVC: UIViewController {
     @IBAction func tryAgainWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    func getData(score:Int, correct:Int, incorrect:Int)
+    func getData(score:Int, correct:Int, incorrect:Int, learned: Int)
     {
         self.recordd = score
         self.correct = correct
         self.incorrect = incorrect
-        
+        self.learned = learned
         let userDefault = UserDefaults.standard.integer(forKey: "recordd")
         if recordd > userDefault {
             UserDefaults.standard.set(recordd, forKey: "recordd")

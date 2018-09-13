@@ -14,7 +14,7 @@ class addwordVC: UIViewController {
     @IBOutlet weak var traduccionTxt: UITextField!
     @IBOutlet var moreLessbtn: [UIButton]!
     @IBOutlet weak var goalLbl: UILabel!
-    var goal = 1
+    var goal = 5
     var grupoSeleccionado:Groups!
     
     override func viewDidLoad() {
@@ -54,7 +54,7 @@ class addwordVC: UIViewController {
     }
     @IBAction func moreLessBtnWasPressed(_ sender: UIButton) {
         if sender.tag == 0 {
-            if goal != 0 {
+            if goal != 5 {
                 goal -= 1
                 goalLbl.text = String(goal)
             }

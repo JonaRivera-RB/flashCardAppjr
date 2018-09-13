@@ -18,18 +18,22 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var cargarViewGame: UIView!
     
     var words:[Words]!
+    
     var numberWord:Int = 0
     var lado:Bool!
+    var learned = 0
     var selectedGroup2 : Groups?
     var switchOn:Bool = false
     var correctAnswer = 0
     var incorrectanswer = 0
     var record  = 0
     
+    
     override func viewDidLoad() {
         print("grupo",selectedGroup2!.group!)
         super.viewDidLoad()
         answerTxt.delegate = self
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     }
     
     //hacemos una peticion a la base de datos
@@ -37,9 +41,11 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         updateVaribles()
         fetchCoreDataObjects()
+        updateViews()
         answerTxt.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
     }
     func updateVaribles(){
+        learned = 0
         numberWord = 0
         correctAnswer = 0
         incorrectanswer = 0
@@ -76,18 +82,29 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     //preguntamos si el numero de palabras es menor que la cantidad de palabras
     //si es menor entonces introducimos en el lbl word la palabra que tiene el array words en la posicion numerWord
     func nextWord() {
-        if numberWord < words.count {
-            switchOn = getProbability()
-            if switchOn == false {
-            wordLbl.text = words[numberWord].word
+            if numberWord < words.count {
+                //mexicanada
+                if words[numberWord].goal != words[numberWord].goalCompletion {
+                    switchOn = getProbability()
+                    
+                    if switchOn == false {
+                        wordLbl.text = words[numberWord].word
+                    }
+                        
+                    else if switchOn {
+                        wordLbl.text = words[numberWord].translate
+                    }
+                }
+                else {
+                    learned += 1
+                    numberWord += 1
+                    updateLbl()
+                    nextWord()
+                }
             }
-            else if switchOn {
-                wordLbl.text = words[numberWord].translate
-            }
-        }
-        else {
-            performSegue(withIdentifier: "showScore", sender: self)
-            updateViews()
+                else {
+                    performSegue(withIdentifier: "showScore", sender: self)
+                
         }
     }
     
@@ -103,7 +120,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let myScoreVC = segue.destination as? scoreVC {
-            myScoreVC.getData(score: record, correct: correctAnswer, incorrect: incorrectanswer)
+            myScoreVC.getData(score: record, correct: correctAnswer, incorrect: incorrectanswer, learned: learned)
         }
     }
     //funcion para actualizar vistas, txt y botones
@@ -180,6 +197,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         if answerTxt.text != "" {
             if correctAnswer == answerTxt.text
             {
+                setProgress(atNumber: self.numberWord)
                 self.correctAnswer += 1
                 self.record += 1
                 self.transitionLeft()
@@ -218,6 +236,25 @@ class myGameVC: UIViewController, UITextFieldDelegate {
 }
 
 extension myGameVC {
+    //funcion para editar el progreso
+    func setProgress(atNumber number:Int) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        
+        let chosenGoal = words[number]
+        
+        if chosenGoal.goal < chosenGoal.goalCompletion {
+            chosenGoal.goal = chosenGoal.goal + 1
+        } else {
+            return
+        }
+        
+        do {
+            try managedContext.save()
+        } catch  {
+            debugPrint("Could not set progress:\(error.localizedDescription)")
+        }
+    }
+    
     //funcion para obtener los datos de la base de datos
     func fetch(completion: (_ completion: Bool) ->()) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
@@ -226,6 +263,7 @@ extension myGameVC {
         fetchRequest.predicate = predicate
         do {
             words = try managedContext.fetch(fetchRequest)
+            
             print("successfully fetched data")
             completion(true)
         } catch {
