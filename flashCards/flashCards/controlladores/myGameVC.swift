@@ -44,6 +44,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         updateViews()
         answerTxt.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
     }
+    //funcion para actualizar las variables a cero y los lbl
     func updateVaribles(){
         learned = 0
         numberWord = 0
@@ -90,13 +91,11 @@ class myGameVC: UIViewController, UITextFieldDelegate {
                     if switchOn == false {
                         wordLbl.text = words[numberWord].word
                     }
-                        
                     else if switchOn {
                         wordLbl.text = words[numberWord].translate
                     }
                 }
                 else {
-                    learned += 1
                     numberWord += 1
                     updateLbl()
                     nextWord()

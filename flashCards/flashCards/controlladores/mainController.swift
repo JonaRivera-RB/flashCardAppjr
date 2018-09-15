@@ -61,15 +61,15 @@ class mainController: UIViewController {
     //si no es cero, hacemos una peticion a la base de datos para saber si ese grupo tiene palabras o no
     @IBAction func playBtnWasPressed(_ sender: Any) {
         if total == 0 {
-        showAlert()
+            showAlert(forAlextText: "Tienes que agregar palabras antes de poder jugar.")
         }
         else {
         fetchCoreDataObjectsGroupsWords()
         }
     }
     //funcion para crear una alerta
-    func showAlert(){
-        let alert = UIAlertController(title: "Ups", message: "Tienes que agregar mas palabras antes de poder jugar.", preferredStyle: .alert)
+    func showAlert(forAlextText alertText:String){
+        let alert = UIAlertController(title: "Ups", message: alertText, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
         alert.addAction(alertAction)
         present(alert, animated: true, completion: nil)
@@ -120,21 +120,34 @@ class mainController: UIViewController {
     
     //funcion para verificar que la peticion a la base de datos se hizo correctamnete sin ningun error
     //esta funcion se hace al oprimir el boton de jugar
-    //preguntamos si el numero total de palabras que contiene ese grupo es mayor de 1
-    //pasamos a la vista
-    //si no mostramos un alerta
+    //hacemos un ciclo para verificar si tenemos palabras por aprender
+    //donde si la meta aun no se ha completado la sumamos como palabra por aprender
+    
+    //preguntamos si el numero total de palabras por aprender que contiene ese grupo es mayor de 3
+    //pasamos a la vista del juego
+    //si no mostramos un alerta donde agregar mas palabras
+    
+    //si no tenemos ninguna palabra por aprneder muestra una alerta donde diga que agrege palabras a la categoria
     func fetchCoreDataObjectsGroupsWords() {
+        var wordsForLearn = 0
         self.loadDataCoreDataGroup { (completion) in
             if completion {
-                if words.count >= 3 {
-                    print(words)
+                for word in words {
+                    if word.goal != word.goalCompletion {
+                        wordsForLearn += 1
+                    }
+                }
+                if wordsForLearn >= 3 {
                     performSegue(withIdentifier: "showPlay", sender: self)
                 } else {
-                    self.showAlert()
+                    self.showAlert(forAlextText: "Tienes que agregar mas palabras antes de poder jugar.")
+                }
+            }
+                else {
+                self.showAlert(forAlextText: "Tienes que agregarle palabras a esta categoria antes de poder jugar.")
                 }
             }
         }
-    }
     //funcion para hacer la peticion a la base de datos
     //donde hacemos una peticion a la base de datos Words
     //para obtener todas las palabras
