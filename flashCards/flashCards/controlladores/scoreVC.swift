@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class scoreVC: UIViewController {
     
@@ -19,8 +20,16 @@ class scoreVC: UIViewController {
     var correct = 0
     var incorrect = 0
     var learned = 0
+    
+    //conexion con el maaged context para la base de datos
+    let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
+    var totalWords = [Words]()
+    //arreglo para traer la cantidad de palabras
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchCoreDataObjects()
         correctAnswereLbl.text = String(correct)
         incorrectAnswerLbl.text = String(incorrect)
         recordLbl.text = String(recordd)
@@ -44,5 +53,30 @@ class scoreVC: UIViewController {
             UserDefaults.standard.set(recordd, forKey: "recordd")
         }
         recordd = UserDefaults.standard.integer(forKey: "recordd")
+    }
+    
+    func fetchCoreDataObjects() {
+        self.loadDataCoreData { (completion) in
+            if completion {
+                for number in 0 ... totalWords.count-1 {
+                    if totalWords[number].goal == totalWords[number].goalCompletion {
+                        learned += 1
+                    }
+                }
+            }
+        }
+    }
+    
+    func loadDataCoreData(completion: (_ completion:Bool) ->()) {
+        let request: NSFetchRequest<Words> = Words.fetchRequest()
+        do {
+            totalWords = try managedContext.fetch(request)
+            completion(true)
+            print("Successfully fetched data")
+        } catch {
+            debugPrint(error.localizedDescription)
+            completion(false)
+            print("error fetched data")
+        }
     }
 }
