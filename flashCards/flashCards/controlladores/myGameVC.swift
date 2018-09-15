@@ -16,8 +16,8 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var acepBtn: vistaBotones!
     @IBOutlet weak var viewMove: sombraVista!
     @IBOutlet weak var cargarViewGame: UIView!
-    
-    var words:[Words]!
+    //var words:[Words]!
+    var wordsForLearn:[Words]!
     
     var numberWord:Int = 0
     var lado:Bool!
@@ -28,6 +28,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     var incorrectanswer = 0
     var record  = 0
     
+    //var wordsForLeard2=[Words]()
     
     override func viewDidLoad() {
         print("grupo",selectedGroup2!.group!)
@@ -40,10 +41,22 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     //al txt le agregamos una funcion para detectar si el usuario ya ingreso palabras o no
     override func viewWillAppear(_ animated: Bool) {
         updateVaribles()
-        fetchCoreDataObjects()
+        checkGoalIsComplete()
+        checkIsWordsIsNull()
         updateViews()
         answerTxt.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
     }
+    
+    func checkGoalIsComplete(){
+        var temporalArray = [Words]()
+        for word in wordsForLearn {
+            if word.goal != word.goalCompletion {
+                temporalArray.append(word)
+        }
+            wordsForLearn = temporalArray
+    }
+    }
+    
     //funcion para actualizar las variables a cero y los lbl
     func updateVaribles(){
         learned = 0
@@ -67,43 +80,30 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     //verificamos que la peticion a la base de datos se hizo correctamente
     //preguntamos si words es mayor o igual si es correcto ejecutamos la funcion nextWord()
     //si no es asi mostramos una alerta
-    func fetchCoreDataObjects(){
-        self.fetch { (completion) in
-            if completion {
-                if words.count >= 1{
-                    nextWord()
-                }
-            }
-            else {
-            print("error")
-            }
-            }
+    func checkIsWordsIsNull(){
+        if wordsForLearn.count >= 1{
+            nextWord()
         }
+        else {
+        print("error")
+        }
+    }
     //funcion para iniciar a jugar
     //preguntamos si el numero de palabras es menor que la cantidad de palabras
     //si es menor entonces introducimos en el lbl word la palabra que tiene el array words en la posicion numerWord
     func nextWord() {
-            if numberWord < words.count {
-                //mexicanada
-                if words[numberWord].goal != words[numberWord].goalCompletion {
+            if numberWord < wordsForLearn.count {
                     switchOn = getProbability()
                     
                     if switchOn == false {
-                        wordLbl.text = words[numberWord].word
+                        wordLbl.text = wordsForLearn[numberWord].word
                     }
                     else if switchOn {
-                        wordLbl.text = words[numberWord].translate
+                        wordLbl.text = wordsForLearn[numberWord].translate
                     }
-                }
-                else {
-                    numberWord += 1
-                    updateLbl()
-                    nextWord()
-                }
             }
-                else {
-                    performSegue(withIdentifier: "showScore", sender: self)
-                
+            else {
+                performSegue(withIdentifier: "showScore", sender: self)
         }
     }
     
@@ -128,8 +128,9 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         acepBtn.isEnabled = false
         acepBtn.alpha = 0.5
     }
+    
     //no estoy seguro para que se necesite esto pero no borrar 
-    @IBAction func answerWasType(_ sender: Any) {
+    @IBAction func answerBtnWasPressed(_ sender: Any) {
       
     }
     //funcion donde indica que el boton de regresar fue presionado
@@ -185,12 +186,11 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         var correctAnswer = ""
         
         if switchOn == false {
-            //wordLbl.text = words[numberWord].word
-            correctAnswer = words[numberWord].translate!
+            correctAnswer = wordsForLearn[numberWord].translate!
         }
             
         else if switchOn {
-            correctAnswer = words[numberWord].word!
+            correctAnswer = wordsForLearn[numberWord].word!
         }
         
         if answerTxt.text != "" {
@@ -228,7 +228,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     func updateViews() {
         for constraint in self.cargarViewGame.constraints {
             if constraint.identifier == "barWidht" {
-            constraint.constant = (self.view.frame.size.width * 0.70)/CGFloat(self.words.count) * CGFloat(self.numberWord)
+            constraint.constant = (self.view.frame.size.width * 0.70)/CGFloat(self.wordsForLearn.count) * CGFloat(self.numberWord)
         }
     }
     }
@@ -239,7 +239,7 @@ extension myGameVC {
     func setProgress(atNumber number:Int) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
         
-        let chosenGoal = words[number]
+        let chosenGoal = wordsForLearn[number]
         
         if chosenGoal.goal < chosenGoal.goalCompletion {
             chosenGoal.goal = chosenGoal.goal + 1
@@ -254,6 +254,7 @@ extension myGameVC {
         }
     }
     
+    /*
     //funcion para obtener los datos de la base de datos
     func fetch(completion: (_ completion: Bool) ->()) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
@@ -270,4 +271,5 @@ extension myGameVC {
             completion(false)
         }
     }
+ */
 }

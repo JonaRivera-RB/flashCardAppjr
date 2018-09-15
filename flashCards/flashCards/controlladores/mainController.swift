@@ -21,6 +21,8 @@ class mainController: UIViewController {
     var selectedGroup:Groups!
     //arreglo para traer las palabras que tiene un grupo en especifico
     var words=[Words]()
+    
+    var wordsForLearn=[Words]()
     //conexion con el maaged context para la base de datos
     let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -84,6 +86,7 @@ class mainController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let myPlayVC = segue.destination as? myGameVC {
             myPlayVC.selectedGroup2 = selectedGroup
+            myPlayVC.wordsForLearn = wordsForLearn
         }
     }
     
@@ -129,15 +132,17 @@ class mainController: UIViewController {
     
     //si no tenemos ninguna palabra por aprneder muestra una alerta donde diga que agrege palabras a la categoria
     func fetchCoreDataObjectsGroupsWords() {
-        var wordsForLearn = 0
+        var wordForLearn = 0
+        wordsForLearn = [Words]()
         self.loadDataCoreDataGroup { (completion) in
             if completion {
                 for word in words {
                     if word.goal != word.goalCompletion {
-                        wordsForLearn += 1
+                        wordForLearn += 1
+                        wordsForLearn.append(word)
                     }
                 }
-                if wordsForLearn >= 3 {
+                if wordForLearn >= 3 {
                     performSegue(withIdentifier: "showPlay", sender: self)
                 } else {
                     self.showAlert(forAlextText: "Tienes que agregar mas palabras antes de poder jugar.")

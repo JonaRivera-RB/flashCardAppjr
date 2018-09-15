@@ -192,7 +192,7 @@
                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         <connections>
-                                            <action selector="answerWasType:" destination="kdz-SF-i9z" eventType="editingDidEnd" id="1Au-qx-uSB"/>
+                                            <action selector="answerBtnWasPressed:" destination="kdz-SF-i9z" eventType="editingDidEnd" id="1Au-qx-uSB"/>
                                         </connections>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBY-z7-GCx">
