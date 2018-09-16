@@ -56,6 +56,7 @@ class scoreVC: UIViewController {
     }
     
     func fetchCoreDataObjects() {
+        let userDefault = UserDefaults.standard.integer(forKey: "learned")
         self.loadDataCoreData { (completion) in
             if completion {
                 for number in 0 ... totalWords.count-1 {
@@ -63,6 +64,10 @@ class scoreVC: UIViewController {
                         learned += 1
                     }
                 }
+                if learned > userDefault {
+                    UserDefaults.standard.set(recordd, forKey: "learned")
+                }
+                learned = UserDefaults.standard.integer(forKey: "learned")
             }
         }
     }

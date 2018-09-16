@@ -88,6 +88,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         print("error")
         }
     }
+    
     //funcion para iniciar a jugar
     //preguntamos si el numero de palabras es menor que la cantidad de palabras
     //si es menor entonces introducimos en el lbl word la palabra que tiene el array words en la posicion numerWord
