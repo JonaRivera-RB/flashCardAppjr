@@ -37,7 +37,8 @@ class scoreVC: UIViewController {
 
     }
     @IBAction func backWasPressed(_ sender: Any) {
-        
+        let rootViewGame = self.storyboard?.instantiateViewController(withIdentifier: "viewMain")
+        self.present(rootViewGame!, animated: true, completion: nil)
     }
     @IBAction func tryAgainWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -59,8 +60,8 @@ class scoreVC: UIViewController {
         let userDefault = UserDefaults.standard.integer(forKey: "learned")
         self.loadDataCoreData { (completion) in
             if completion {
-                for number in 0 ... totalWords.count-1 {
-                    if totalWords[number].goal == totalWords[number].goalCompletion {
+                for number in totalWords  {
+                    if number.goal == number.goalCompletion {
                         learned += 1
                     }
                 }
