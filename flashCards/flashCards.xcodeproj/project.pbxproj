@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		131423DE21137EDE00A041CE /* myGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131423DD21137EDE00A041CE /* myGameVC.swift */; };
+		133D8734214F4DD200728394 /* statisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133D8733214F4DD200728394 /* statisticsVC.swift */; };
 		134A737121310F8C008629E5 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A737021310F8C008629E5 /* extensions.swift */; };
 		134A737521311538008629E5 /* groupsColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A737421311538008629E5 /* groupsColor.swift */; };
 		138234F021475EBF00D5EACE /* scoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138234EF21475EBF00D5EACE /* scoreVC.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		131423DD21137EDE00A041CE /* myGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myGameVC.swift; sourceTree = "<group>"; };
+		133D8733214F4DD200728394 /* statisticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticsVC.swift; sourceTree = "<group>"; };
 		134A737021310F8C008629E5 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		134A737421311538008629E5 /* groupsColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groupsColor.swift; sourceTree = "<group>"; };
 		138234EF21475EBF00D5EACE /* scoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scoreVC.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				131423DD21137EDE00A041CE /* myGameVC.swift */,
 				13F7E61121253DD200C68CA6 /* myGroupsVC.swift */,
 				138234EF21475EBF00D5EACE /* scoreVC.swift */,
+				133D8733214F4DD200728394 /* statisticsVC.swift */,
 			);
 			path = controlladores;
 			sourceTree = "<group>";
@@ -170,7 +173,7 @@
 				13F196E5210A3DED0033EF05 /* Sources */,
 				13F196E6210A3DED0033EF05 /* Frameworks */,
 				13F196E7210A3DED0033EF05 /* Resources */,
-				FFF0BAD0E2CA8321E3D03314 /* [CP] Embed Pods Frameworks */,
+				E159F9CA62E7983C5A54080D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,6 +196,7 @@
 				TargetAttributes = {
 					13F196E8210A3DED0033EF05 = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1000;
 					};
 				};
 			};
@@ -228,6 +232,26 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		E159F9CA62E7983C5A54080D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-flashCards/Pods-flashCards-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-flashCards/Pods-flashCards-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		E8B9A2B702A1041B46B0A42B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -246,24 +270,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FFF0BAD0E2CA8321E3D03314 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-flashCards/Pods-flashCards-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-flashCards/Pods-flashCards-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -272,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13F19708210A4FB20033EF05 /* vistaBotones.swift in Sources */,
+				133D8734214F4DD200728394 /* statisticsVC.swift in Sources */,
 				13AEA998211006B50048696F /* addwordVC.swift in Sources */,
 				13F7E61221253DD200C68CA6 /* myGroupsVC.swift in Sources */,
 				13F196EF210A3DEE0033EF05 /* mainController.swift in Sources */,
@@ -434,13 +441,10 @@
 				DEVELOPMENT_TEAM = 967D57A66Z;
 				INFOPLIST_FILE = flashCards/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanRivera.flashCards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -454,13 +458,10 @@
 				DEVELOPMENT_TEAM = 967D57A66Z;
 				INFOPLIST_FILE = flashCards/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jonathanRivera.flashCards;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

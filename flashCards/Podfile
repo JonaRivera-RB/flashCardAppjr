@@ -8,4 +8,6 @@ target 'flashCards' do
     
     # Pods for flashCards
     pod 'IQKeyboardManagerSwift'
+    pod 'Charts'
+
 end

@@ -161,7 +161,7 @@ extension myGroupsVC : UITableViewDelegate, UITableViewDataSource {
         return true
     }
     //le decimos que no tendra ningun estilo por defecto
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
     //creamos la opcion para poder eliminar el grupo y le pasamos como referencia la celda que queremos eliminar

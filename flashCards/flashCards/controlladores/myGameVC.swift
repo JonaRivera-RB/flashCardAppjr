@@ -44,7 +44,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         checkGoalIsComplete()
         checkIsWordsIsNull()
         updateViews()
-        answerTxt.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControlEvents.editingChanged)
+        answerTxt.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
     }
     
     func checkGoalIsComplete(){

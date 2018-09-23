@@ -58,6 +58,10 @@ class mainController: UIViewController {
         }
     }
     
+    @IBAction func statisticsBtnWasPressed(_ sender: Any) {
+        performSegue(withIdentifier: "showStatistics", sender: self)
+    }
+    
     //funcion para el boton cuando es presionado
     //mostramos alerta si el numero de palabras es igual a 0
     //si no es cero, hacemos una peticion a la base de datos para saber si ese grupo tiene palabras o no
