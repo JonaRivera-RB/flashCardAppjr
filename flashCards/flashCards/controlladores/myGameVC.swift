@@ -26,7 +26,6 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     var switchOn:Bool = false
     var correctAnswer = 0
     var incorrectanswer = 0
-    var record  = 0
     
     //var wordsForLeard2=[Words]()
     
@@ -63,7 +62,6 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         numberWord = 0
         correctAnswer = 0
         incorrectanswer = 0
-        record = 0
         wordLbl.text = ""
     }
     //por medio de esta funcion le decimos al txt que si el txt esta vacio el boton se ponga no disponible
@@ -120,7 +118,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let myScoreVC = segue.destination as? scoreVC {
-            myScoreVC.getData(score: record, correct: correctAnswer, incorrect: incorrectanswer, learned: learned)
+            myScoreVC.getData(correct: correctAnswer, incorrect: incorrectanswer, learned: learned)
         }
     }
     //funcion para actualizar vistas, txt y botones
@@ -199,7 +197,6 @@ class myGameVC: UIViewController, UITextFieldDelegate {
             {
                 setProgress(atNumber: self.numberWord)
                 self.correctAnswer += 1
-                self.record += 1
                 self.transitionLeft()
                 print("correcto")
                 wordLbl.textColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)

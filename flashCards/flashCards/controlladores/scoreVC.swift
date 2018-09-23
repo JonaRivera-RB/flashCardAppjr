@@ -13,10 +13,8 @@ class scoreVC: UIViewController {
     
     @IBOutlet weak var correctAnswereLbl: UILabel!
     @IBOutlet weak var incorrectAnswerLbl: UILabel!
-    @IBOutlet weak var recordLbl: UILabel!
     @IBOutlet weak var learnedLbl: UILabel!
     
-    var recordd = 0
     var correct = 0
     var incorrect = 0
     var learned = 0
@@ -32,7 +30,6 @@ class scoreVC: UIViewController {
         fetchCoreDataObjects()
         correctAnswereLbl.text = String(correct)
         incorrectAnswerLbl.text = String(incorrect)
-        recordLbl.text = String(recordd)
         learnedLbl.text = String(learned)
 
     }
@@ -43,17 +40,11 @@ class scoreVC: UIViewController {
     @IBAction func tryAgainWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    func getData(score:Int, correct:Int, incorrect:Int, learned: Int)
+    func getData( correct:Int, incorrect:Int, learned: Int)
     {
-        self.recordd = score
         self.correct = correct
         self.incorrect = incorrect
         self.learned = learned
-        let userDefault = UserDefaults.standard.integer(forKey: "recordd")
-        if recordd > userDefault {
-            UserDefaults.standard.set(recordd, forKey: "recordd")
-        }
-        recordd = UserDefaults.standard.integer(forKey: "recordd")
     }
     
     func fetchCoreDataObjects() {
@@ -66,7 +57,7 @@ class scoreVC: UIViewController {
                     }
                 }
                 if learned > userDefault {
-                    UserDefaults.standard.set(recordd, forKey: "learned")
+                    UserDefaults.standard.set(learned, forKey: "learned")
                 }
                 learned = UserDefaults.standard.integer(forKey: "learned")
             }
