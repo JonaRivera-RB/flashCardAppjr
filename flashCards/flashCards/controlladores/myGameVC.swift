@@ -224,6 +224,9 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     }
     //funcion para ir cambiando la barra de estado
     func updateViews() {
+        //buscamos en cada una de las constrains de la abrra de progresos
+        //si el identificador del constrainr es igual a barWidht
+        //entonces cambio el valor
         for constraint in self.cargarViewGame.constraints {
             if constraint.identifier == "barWidht" {
             constraint.constant = (self.view.frame.size.width * 0.70)/CGFloat(self.wordsForLearn.count) * CGFloat(self.numberWord)

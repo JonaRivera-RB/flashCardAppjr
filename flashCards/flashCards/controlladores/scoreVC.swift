@@ -14,10 +14,13 @@ class scoreVC: UIViewController {
     @IBOutlet weak var correctAnswereLbl: UILabel!
     @IBOutlet weak var incorrectAnswerLbl: UILabel!
     @IBOutlet weak var learnedLbl: UILabel!
+    @IBOutlet weak var viewlevel: UIView!
     
     var correct = 0
     var incorrect = 0
     var learned = 0
+    
+     let shapeLayer = CAShapeLayer()
     
     //conexion con el maaged context para la base de datos
     let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
