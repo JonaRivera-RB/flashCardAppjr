@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreData
+import SAConfettiView
 
 class scoreVC: UIViewController {
-    
+    //outlet necesarios
     @IBOutlet weak var correctAnswereLbl: UILabel!
     @IBOutlet weak var incorrectAnswerLbl: UILabel!
     @IBOutlet weak var learnedLbl: UILabel!
@@ -18,42 +19,57 @@ class scoreVC: UIViewController {
     @IBOutlet weak var yourPoints: UILabel!
     @IBOutlet weak var progressLevel: UIView!
     @IBOutlet weak var level: UILabel!
-    
+    //variables necesarias
     var correct = 0
     var incorrect = 0
     var learned = 0
     var levelPts = 10
-    var myPts = 12
+    var myPts = 20
     var mylevel = 0
     var startValue: Int = 0
-    
+    //userdefault
     let userDefaultPoints = UserDefaults.standard
+    //variable para la animacion
     var displayLink: CADisplayLink?
-     let shapeLayer = CAShapeLayer()
+    //variable para el confetti
+    var confettiView:SAConfettiView?
     
     //conexion con el maaged context para la base de datos
     let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
-    var totalWords = [Words]()
     //arreglo para traer la cantidad de palabras
+    var totalWords = [Words]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCoreDataObjects()
-        
+        getmyData()
+    }
+    //funcion para detectar toques en la pantalla
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if confettiView?.isActive() ?? false {
+            self.confettiView!.stopConfetti()
+            self.confettiView!.removeFromSuperview()
+        }
+    }
+    
+    //funcion para obtener los puntos que necesito y el nivel que tengo
+    //para traer las correctas las incorrectas y las aprendidas
+    func getmyData() {
+        levelPts = userDefaultPoints.integer(forKey: "pointsNextLevel")
+        mylevel = userDefaultPoints.integer(forKey: "yourLevel")
         correctAnswereLbl.text = String(correct)
         incorrectAnswerLbl.text = String(incorrect)
         learnedLbl.text = String(learned)
         level.text = String("level \(mylevel)")
+        yourPoints.text = String("\(startValue) / \(levelPts)")
     }
-    
-    func getData() {
-        levelPts = userDefaultPoints.integer(forKey: "pointsNextLevel")
-        mylevel = userDefaultPoints.integer(forKey: "yourLevel")
-    }
+    //cuando la vista aparezca y transcurra un segundo cargamos la animacion
     override func viewDidAppear(_ animated: Bool) {
-        displayLink = CADisplayLink(target: self, selector: #selector(handleUpdate))
-        displayLink?.add(to: .main, forMode: .default)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+        // Put your code which should be executed with a delay here
+            self.displayLink = CADisplayLink(target: self, selector: #selector(self.handleUpdate))
+            self.displayLink?.add(to: .main, forMode: .default)
+    })
     }
     
     //buscamos en cada una de las constrains de la abrra de progresos
@@ -80,33 +96,57 @@ class scoreVC: UIViewController {
         }
     }
     //funcion para calculos el siguiente nivel
+    //convertimos los puntos a bouble obtenemos el 20 porciento y  se lo suma a los puntos necesarios para alcanzar un nuevo nivel
+    //configuramos los puntos que se necesitan para el nuevo nivel
+    //configuramos el nivel del usuario
     func calculateNextLevelPts(){
         var necessaryPoints:Double = (Double(levelPts) * 20)/100
         necessaryPoints = round(necessaryPoints)
         levelPts += Int(necessaryPoints)
         mylevel += 1
+        
         userDefaultPoints.set(levelPts, forKey: "pointsNextLevel")
         levelPts = userDefaultPoints.integer(forKey: "pointsNextLevel")
+        
         userDefaultPoints.set(mylevel, forKey: "yourLevel")
         mylevel = userDefaultPoints.integer(forKey: "yourLevel")
+        addConfetti()
     }
-    
-    
+    //funcion para añadir confetti
+    func addConfetti(){
+        confettiView = SAConfettiView(frame: self.view.bounds)
+        self.view.addSubview(confettiView!)
+        confettiView!.intensity = 0.75
+        confettiView!.type = .Confetti
+        confettiView!.startConfetti()
+    }
+    //funcion para regresar a la pagina principal
     @IBAction func backWasPressed(_ sender: Any) {
         let rootViewGame = self.storyboard?.instantiateViewController(withIdentifier: "viewMain")
         self.present(rootViewGame!, animated: true, completion: nil)
     }
+    //funcion para regresar a la pagina de jugar de nuevo
     @IBAction func tryAgainWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    //funcion para obtener los datos de como estuvo tu juego
     func getData( correct:Int, incorrect:Int, learned: Int)
     {
         self.correct = correct
         self.incorrect = incorrect
         self.learned = learned
     }
-    
+}
+
+extension scoreVC {
+    //funcion para recuperar los datos de la base de datos de las palabras aprendidas
+    //si la funcion regresa un true de que todo corrio perfecto
+    //hacemos un ciclo de el total de palabras y preguntamos si la palabra en su propiedad meta
+    //es igual al numero que se habia proponido aprender
+    //si si es igual, ah aprendidas le sumamos 1
+    //si aprendidas es mayor a lo que ya tiene guardado
+    //le configuramos un nuevo valor y le devolvemos ese valor a la variable aprendido
     func fetchCoreDataObjects() {
         let userDefault = UserDefaults.standard.integer(forKey: "learned")
         self.loadDataCoreData { (completion) in
@@ -123,7 +163,10 @@ class scoreVC: UIViewController {
             }
         }
     }
-    
+    //funcion para obtener los datos de la base de datos
+    //donde hacemos una peticion a la base de datos de nombre "Words
+    //intentamos recuperar las palabras si se realiza correctamente devuleve un true
+    //si no atrapa el error y devuelve un false
     func loadDataCoreData(completion: (_ completion:Bool) ->()) {
         let request: NSFetchRequest<Words> = Words.fetchRequest()
         do {
@@ -137,3 +180,4 @@ class scoreVC: UIViewController {
         }
     }
 }
+

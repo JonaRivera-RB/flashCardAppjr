@@ -3,20 +3,24 @@ PODS:
     - Charts/Core (= 3.2.0)
   - Charts/Core (3.2.0)
   - IQKeyboardManagerSwift (6.1.1)
+  - SAConfettiView (0.1.8)
 
 DEPENDENCIES:
   - Charts
   - IQKeyboardManagerSwift
+  - SAConfettiView
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Charts
     - IQKeyboardManagerSwift
+    - SAConfettiView
 
 SPEC CHECKSUMS:
   Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
+  SAConfettiView: c87031a2280659261b730fce3669fb10e73636ee
 
-PODFILE CHECKSUM: 973ce58bcefa2b08c488be4057202ae447171035
+PODFILE CHECKSUM: ede5c98c433a6d7be9337e4701eb2b687f71a811
 
 COCOAPODS: 1.5.0
