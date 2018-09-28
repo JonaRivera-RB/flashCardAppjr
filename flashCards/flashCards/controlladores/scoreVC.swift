@@ -17,15 +17,17 @@ class scoreVC: UIViewController {
     @IBOutlet weak var viewlevel: UIView!
     @IBOutlet weak var yourPoints: UILabel!
     @IBOutlet weak var progressLevel: UIView!
+    @IBOutlet weak var level: UILabel!
     
     var correct = 0
     var incorrect = 0
     var learned = 0
-    var levelPts = 20
-    var myPts = 30
-    
+    var levelPts = 10
+    var myPts = 12
+    var mylevel = 0
     var startValue: Int = 0
     
+    let userDefaultPoints = UserDefaults.standard
     var displayLink: CADisplayLink?
      let shapeLayer = CAShapeLayer()
     
@@ -38,11 +40,17 @@ class scoreVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCoreDataObjects()
+        
         correctAnswereLbl.text = String(correct)
         incorrectAnswerLbl.text = String(incorrect)
         learnedLbl.text = String(learned)
+        level.text = String("level \(mylevel)")
     }
     
+    func getData() {
+        levelPts = userDefaultPoints.integer(forKey: "pointsNextLevel")
+        mylevel = userDefaultPoints.integer(forKey: "yourLevel")
+    }
     override func viewDidAppear(_ animated: Bool) {
         displayLink = CADisplayLink(target: self, selector: #selector(handleUpdate))
         displayLink?.add(to: .main, forMode: .default)
@@ -64,13 +72,25 @@ class scoreVC: UIViewController {
         if startValue >= levelPts {
             startValue = 0
             myPts -= levelPts
-            levelPts = 30
-            
+           calculateNextLevelPts()
+            level.text = String("New level \(mylevel)")
         }
         if startValue > myPts {
             startValue = myPts
         }
     }
+    //funcion para calculos el siguiente nivel
+    func calculateNextLevelPts(){
+        var necessaryPoints:Double = (Double(levelPts) * 20)/100
+        necessaryPoints = round(necessaryPoints)
+        levelPts += Int(necessaryPoints)
+        mylevel += 1
+        userDefaultPoints.set(levelPts, forKey: "pointsNextLevel")
+        levelPts = userDefaultPoints.integer(forKey: "pointsNextLevel")
+        userDefaultPoints.set(mylevel, forKey: "yourLevel")
+        mylevel = userDefaultPoints.integer(forKey: "yourLevel")
+    }
+    
     
     @IBAction func backWasPressed(_ sender: Any) {
         let rootViewGame = self.storyboard?.instantiateViewController(withIdentifier: "viewMain")
