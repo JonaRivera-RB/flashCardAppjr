@@ -84,7 +84,9 @@ class scoreVC: UIViewController {
     //funcion para obtener los puntos que necesito y el nivel que tengo
     //para traer las correctas las incorrectas y las aprendidas
     func getmyData() {
-        levelPts = userDefaultPoints.integer(forKey: "pointsNextLevel")
+        if userDefaultPoints.integer(forKey: "pointsNextLevel") != 0 {
+            levelPts = userDefaultPoints.integer(forKey: "pointsNextLevel")
+        }
         mylevel = userDefaultPoints.integer(forKey: "yourLevel")
         myPts = userDefaultPoints.integer(forKey: "myPoints")
         correctAnswereLbl.text = String(correct)
