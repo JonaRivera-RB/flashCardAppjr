@@ -126,6 +126,8 @@ class mainController: UIViewController {
         }
     
     //funcion para verificar que la peticion a la base de datos se hizo correctamnete sin ningun error
+    //vaciamos el array
+    //creamos una variable temporal para llevar un conteo
     //esta funcion se hace al oprimir el boton de jugar
     //hacemos un ciclo para verificar si tenemos palabras por aprender
     //donde si la meta aun no se ha completado la sumamos como palabra por aprender
@@ -147,7 +149,10 @@ class mainController: UIViewController {
                     }
                 }
                 if wordForLearn >= 3 {
-                    performSegue(withIdentifier: "showPlay", sender: self)
+                    if wordForLearn >= 15 {
+                            self.getWordsRandom()
+                    }
+                        performSegue(withIdentifier: "showPlay", sender: self)
                 } else {
                     self.showAlert(forAlextText: "Tienes que agregar mas palabras antes de poder jugar.")
                 }
@@ -157,6 +162,17 @@ class mainController: UIViewController {
                 }
             }
         }
+    func getWordsRandom(){
+        var arrayTemp:[Words] =  wordsForLearn
+        wordsForLearn = [Words]()
+        var numberTemp:Int = 0
+        for _ in 0 ..< 15 {
+            numberTemp = Int(arc4random_uniform(UInt32(arrayTemp.count)))
+            wordsForLearn.append(arrayTemp[numberTemp])
+            arrayTemp.remove(at: numberTemp)
+        }
+    }
+    
     //funcion para hacer la peticion a la base de datos
     //donde hacemos una peticion a la base de datos Words
     //para obtener todas las palabras

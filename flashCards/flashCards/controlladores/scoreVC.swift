@@ -24,7 +24,7 @@ class scoreVC: UIViewController {
     var incorrect = 0
     var learned = 0
     var levelPts = 10
-    var myPts = 20
+    var myPts = 0
     var mylevel = 0
     var startValue: Int = 0
     //userdefault
@@ -44,6 +44,35 @@ class scoreVC: UIViewController {
         fetchCoreDataObjects()
         getmyData()
     }
+    
+    //cuando la vista aparezca y transcurra un segundo cargamos la animacion
+    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1/5), execute: {
+            // Put your code which should be executed with a delay here
+            self.displayLink = CADisplayLink(target: self, selector: #selector(self.handleUpdate))
+            self.displayLink?.add(to: .main, forMode: .default)
+        })
+    }
+    
+    //funcion para obtener los datos de como estuvo tu juego
+    func getData( correct:Int, incorrect:Int, learned: Int , myPts:Int)
+    {
+        self.correct = correct
+        self.incorrect = incorrect
+        self.learned = learned
+        print("mis puntos primer filtro \(self.myPts)")
+        self.myPts = userDefaultPoints.integer(forKey: "myPoints")
+        
+        self.startValue = self.myPts
+        
+        self.myPts += myPts
+        print("mis puntos segundo filtro \(self.myPts)")
+        userDefaultPoints.set(self.myPts, forKey: "myPoints")
+        self.myPts = userDefaultPoints.integer(forKey: "myPoints")
+        
+        print("mis puntos tercero filtro \(self.myPts)")
+        
+    }
     //funcion para detectar toques en la pantalla
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if confettiView?.isActive() ?? false {
@@ -57,26 +86,24 @@ class scoreVC: UIViewController {
     func getmyData() {
         levelPts = userDefaultPoints.integer(forKey: "pointsNextLevel")
         mylevel = userDefaultPoints.integer(forKey: "yourLevel")
+        myPts = userDefaultPoints.integer(forKey: "myPoints")
         correctAnswereLbl.text = String(correct)
         incorrectAnswerLbl.text = String(incorrect)
         learnedLbl.text = String(learned)
         level.text = String("level \(mylevel)")
-        yourPoints.text = String("\(startValue) / \(levelPts)")
-    }
-    //cuando la vista aparezca y transcurra un segundo cargamos la animacion
-    override func viewDidAppear(_ animated: Bool) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
-        // Put your code which should be executed with a delay here
-            self.displayLink = CADisplayLink(target: self, selector: #selector(self.handleUpdate))
-            self.displayLink?.add(to: .main, forMode: .default)
-    })
+        yourPoints.text = String("\(startValue) / \(levelPts) Points")
+        for constraint in self.progressLevel.constraints {
+            if constraint.identifier == "levelwidth" {
+                constraint.constant = (self.view.frame.size.width * 0.80)/CGFloat(self.levelPts) * CGFloat(self.startValue)
+            }
+        }
     }
     
     //buscamos en cada una de las constrains de la abrra de progresos
     //si el identificador del constrainr es igual a barWidht
     //entonces cambio el valor
     @objc func handleUpdate() {
-        yourPoints.text = String("\(startValue) / \(levelPts)")
+        yourPoints.text = String("\(startValue) / \(levelPts) Points")
         for constraint in self.progressLevel.constraints {
             if constraint.identifier == "levelwidth" {
                  constraint.constant = (self.view.frame.size.width * 0.80)/CGFloat(self.levelPts) * CGFloat(self.startValue)
@@ -87,7 +114,13 @@ class scoreVC: UIViewController {
         //restame los puntos, subeme de nivel y sube puntos para obtener nivel nuevo
         if startValue >= levelPts {
             startValue = 0
+            print("mis puntos cuarto filtro \(self.myPts)")
             myPts -= levelPts
+            print("mis puntos quinto filtro \(self.myPts)")
+            userDefaultPoints.set(self.myPts, forKey: "myPoints")
+            self.myPts = userDefaultPoints.integer(forKey: "myPoints")
+            
+            print("mis puntos sexto filtro \(self.myPts)")
            calculateNextLevelPts()
             level.text = String("New level \(mylevel)")
         }
@@ -128,14 +161,6 @@ class scoreVC: UIViewController {
     //funcion para regresar a la pagina de jugar de nuevo
     @IBAction func tryAgainWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
-    }
-    
-    //funcion para obtener los datos de como estuvo tu juego
-    func getData( correct:Int, incorrect:Int, learned: Int)
-    {
-        self.correct = correct
-        self.incorrect = incorrect
-        self.learned = learned
     }
 }
 

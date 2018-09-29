@@ -19,6 +19,7 @@ class myWordsVC: UIViewController {
     @IBOutlet weak var noWordsLbl: UILabel!
     @IBOutlet weak var viewUndo: UIView!
     @IBOutlet weak var cancelBtn: UIButton!
+    @IBOutlet weak var viewLearned: UIView!
     
     var words = [Words]()
     var wordSave:Words!

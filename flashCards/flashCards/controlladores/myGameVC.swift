@@ -26,6 +26,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     var switchOn:Bool = false
     var correctAnswer = 0
     var incorrectanswer = 0
+    var puntos = 0
     
     //var wordsForLeard2=[Words]()
     
@@ -56,12 +57,13 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     }
     }
     
-    //funcion para actualizar las variables a cero y los lbl
+    //funcion para actualizar las variables a cero y los lbl despues de jugar
     func updateVaribles(){
         learned = 0
         numberWord = 0
         correctAnswer = 0
         incorrectanswer = 0
+        puntos = 0
         wordLbl.text = ""
     }
     //por medio de esta funcion le decimos al txt que si el txt esta vacio el boton se ponga no disponible
@@ -118,10 +120,10 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let myScoreVC = segue.destination as? scoreVC {
-            myScoreVC.getData(correct: correctAnswer, incorrect: incorrectanswer, learned: learned)
+            myScoreVC.getData(correct: correctAnswer, incorrect: incorrectanswer, learned: learned, myPts: puntos)
         }
     }
-    //funcion para actualizar vistas, txt y botones
+    //funcion para actualizar vistas, txt y botones cuando se pasa a la siguiente palabra
     func updateLbl() {
         answerTxt.text = ""
         acepBtn.isEnabled = false
@@ -171,6 +173,9 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     //boton para saltar pregunta
     @IBAction func skipBtanWasPressed(_ sender: Any) {
         numberWord += 1
+        if puntos > 0 {
+            puntos -= 1
+        }
         updateViews()
         updateLbl()
         nextWord()
@@ -203,6 +208,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
                 viewMove.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
                 wordLbl.text = "correcto!"
                 lado = true
+                puntos += 1
             }
             else {
                 self.incorrectanswer += 1
