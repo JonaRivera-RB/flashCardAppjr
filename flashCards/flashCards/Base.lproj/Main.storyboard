@@ -269,10 +269,20 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vc6-aB-dDi">
+                                        <rect key="frame" x="226.5" y="10" width="26" height="30"/>
+                                        <state key="normal" image="play_btn_pop_up"/>
+                                        <connections>
+                                            <action selector="sonidBtnWasPressed:" destination="kdz-SF-i9z" eventType="touchUpInside" id="1If-U3-99L"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="vc6-aB-dDi" secondAttribute="trailing" constant="10" id="0DW-hp-bSH"/>
                                     <constraint firstItem="Zxk-NH-keh" firstAttribute="top" secondItem="KPS-af-gwC" secondAttribute="top" constant="50" id="OfK-Ez-NuQ"/>
+                                    <constraint firstItem="Zxk-NH-keh" firstAttribute="top" secondItem="vc6-aB-dDi" secondAttribute="bottom" constant="10" id="Y5r-44-wu2"/>
+                                    <constraint firstItem="vc6-aB-dDi" firstAttribute="top" secondItem="KPS-af-gwC" secondAttribute="top" constant="10" id="atF-T5-yYy"/>
                                     <constraint firstAttribute="width" secondItem="KPS-af-gwC" secondAttribute="height" multiplier="1:1" id="b8U-C9-yuy"/>
                                     <constraint firstAttribute="trailing" secondItem="Zxk-NH-keh" secondAttribute="trailing" constant="20" id="fOF-KI-bpn"/>
                                     <constraint firstItem="Zxk-NH-keh" firstAttribute="leading" secondItem="KPS-af-gwC" secondAttribute="leading" constant="20" id="iXo-3u-yUK"/>
@@ -1227,4 +1237,7 @@
             <point key="canvasLocation" x="2514" y="368"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="play_btn_pop_up" width="26" height="26"/>
+    </resources>
 </document>

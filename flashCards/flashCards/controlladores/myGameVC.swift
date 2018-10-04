@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import AVFoundation
 
 class myGameVC: UIViewController, UITextFieldDelegate {
 
@@ -180,6 +181,17 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         updateLbl()
         nextWord()
     }
+    @IBAction func sonidBtnWasPressed(_ sender: Any) {
+        convertTextToSpeech(forText:  wordsForLearn[numberWord].word!)
+    }
+    func convertTextToSpeech(forText text:String){
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        
+        let synth = AVSpeechSynthesizer()
+        synth.speak(utterance)
+    }
+    
     //funcion para checar respuesta
     //creamos una constante para obtener la respuesta correcta
     //verificamos que el txt no este vacio
