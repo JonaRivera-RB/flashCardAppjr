@@ -12,7 +12,6 @@ import Charts
 class statisticsVC: UIViewController {
 
     @IBOutlet weak var linechartView: PieChartView!
-    @IBOutlet weak var viewCirle: UIView!
     
     var wordsLearned = PieChartDataEntry(value: 0)
     var wordsIncorrect = PieChartDataEntry(value: 0)
@@ -24,38 +23,14 @@ class statisticsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let center = viewCirle.center
-        //create my track layer
-        let trackLayer = CAShapeLayer()
-        let textLayer = CATextLayer()
-        textLayer.string = "90 pts"// textLayer - CATextLayer instance
-        textLayer.fontSize = 10
-        
-        
-        let circularPath = UIBezierPath(arcCenter: center, radius: 30, startAngle: -CGFloat.pi/2, endAngle: 2 * CGFloat.pi, clockwise: true)
-        
-        trackLayer.path = circularPath.cgPath
-        trackLayer.strokeColor = UIColor.lightGray.cgColor
-        trackLayer.lineWidth = 3
-        trackLayer.fillColor = UIColor.clear.cgColor
-        trackLayer.lineCap = CAShapeLayerLineCap.round
-        view.layer.addSublayer(trackLayer)
-        
-        shapeLayer.path = circularPath.cgPath
-        shapeLayer.strokeColor = UIColor.red.cgColor
-        shapeLayer.lineWidth = 3
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineCap = CAShapeLayerLineCap.round
-        shapeLayer.strokeEnd = 0
-        view.layer.addSublayer(shapeLayer)
-        view.layer.addSublayer(textLayer)
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTop)))
-        
         
         linechartView.chartDescription?.text = "Your statistics"
         linechartView.centerText = "My words"
-        wordsLearned.value = 30.0
-        wordsLearned.label = "Learned"
+        let learnedWords:Int = UserDefaults.standard.integer(forKey: "learned")
+        
+        if learnedWords != 0 {
+            wordsLearned.value = Double(learnedWords)
+        }
         
         wordsCorrect.value = 30.0
         wordsCorrect.label = "Correct"
@@ -88,6 +63,7 @@ class statisticsVC: UIViewController {
     
     @IBAction func actionBtnWasPressed(_ sender: Any) {
     }
+    
     @IBAction func backBtnWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

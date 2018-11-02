@@ -34,6 +34,7 @@ class scoreVC: UIViewController {
     //variable para el confetti
     var confettiView:SAConfettiView?
     
+    @IBOutlet weak var confetiview: UIView!
     //conexion con el maaged context para la base de datos
     let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     //arreglo para traer la cantidad de palabras
@@ -151,7 +152,7 @@ class scoreVC: UIViewController {
     func addConfetti(){
         confettiView = SAConfettiView(frame: self.view.bounds)
         self.view.addSubview(confettiView!)
-        confettiView!.intensity = 0.75
+        confettiView!.intensity = 0.50
         confettiView!.type = .Confetti
         confettiView!.startConfetti()
     }

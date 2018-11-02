@@ -67,6 +67,7 @@ class myWordsVC: UIViewController {
     
     @IBAction func cancelBtnWasPressed(_ sender: Any) {
         viewUndo.alpha = 0.0
+        viewUndo.isHidden = true
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
         managedContext.undoManager?.undo()
         fetchCoreDataObjects()
@@ -114,12 +115,13 @@ extension myWordsVC: UITableViewDelegate, UITableViewDataSource {
 extension myWordsVC {
     func fadeOutView(view: UIView) {
         
-        UIView.animate(withDuration: 1.0, delay: 1.5, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.5, delay: 1.0, options: .curveEaseOut, animations: {
             view.alpha = 0.0
         }, completion: { (true) in
             self.cancelBtn.isHidden = true
         })
     }
+    
     func fadeInView(view: UIView) {
         UIView.animate(withDuration: 3.0) {
             view.alpha = 1.0
@@ -136,6 +138,7 @@ extension myWordsVC {
         do {
             try managedContext.save()
             cancelBtn.isHidden = false
+            viewUndo.isHidden = false
             fadeInView(view: viewUndo)
             fadeOutView(view: viewUndo)
             print("seccessfully remove word")

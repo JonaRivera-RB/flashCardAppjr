@@ -181,9 +181,11 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         updateLbl()
         nextWord()
     }
+    //mandamos a llamar al boton para poder activar la funcion del sonido
     @IBAction func sonidBtnWasPressed(_ sender: Any) {
         convertTextToSpeech(forText:  wordsForLearn[numberWord].word!)
     }
+    //creamos funcion para convertir texto a audio y le pasamos por parametro la palabra que queremos escuchar
     func convertTextToSpeech(forText text:String){
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")

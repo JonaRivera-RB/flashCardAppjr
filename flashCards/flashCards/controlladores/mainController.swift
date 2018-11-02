@@ -8,8 +8,6 @@
 //hacer peticion al cargar la vista si no tiene datos no hay que mostrar
 import UIKit
 import CoreData
-
-
 class mainController: UIViewController {
     //arreglo para traer todas las palabras
     var totalWords = [Words]()
@@ -25,7 +23,6 @@ class mainController: UIViewController {
     var wordsForLearn=[Words]()
     //conexion con el maaged context para la base de datos
     let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     @IBOutlet weak var mensageLbl: UILabel!
     @IBOutlet weak var groupsPicker: UIPickerView!
     
@@ -42,7 +39,6 @@ class mainController: UIViewController {
         fetchCoreDataObjects()
         fetchCoreDataObjectsGroups()
         groupsPicker.reloadAllComponents()
-        
         //preguntamos si el array de grupos es mayor que cero
         //y si si seleccionamos por defecto la posicion 0
         if groupsSheet.count > 0 {
@@ -57,9 +53,12 @@ class mainController: UIViewController {
             mensageLbl.text = "Memoriza tus palabras, tienes \(total) por aprender. 🤓"
         }
     }
-    
     @IBAction func statisticsBtnWasPressed(_ sender: Any) {
-        performSegue(withIdentifier: "showStatistics", sender: self)
+        let alertController = UIAlertController(title: "Ups", message: "coming soon", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
+       // performSegue(withIdentifier: "showStatistics", sender: self)
     }
     
     //funcion para el boton cuando es presionado
