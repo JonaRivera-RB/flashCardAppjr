@@ -98,9 +98,6 @@ class myGroupsVC: UIViewController {
         alertController.addAction(alertAction)
         present(alertController, animated: true, completion: nil)
     }
-    @IBAction func exitBtnWasPressed(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
     //funcion para guardar en la base de datos
 func saveInCoreData() {
     do {

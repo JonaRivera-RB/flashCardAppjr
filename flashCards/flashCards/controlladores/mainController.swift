@@ -80,10 +80,6 @@ class mainController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
    
-    @IBAction func showWordsBtnWasPressed(_ sender: Any) {
-        performSegue(withIdentifier: "showWords", sender: self)
-    }
-    
     //preparamos la vista para pasar a la siguiente preguntamos si tiene como destino la vista
     //mygamevc y le mandamos el grupo seleccionado
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

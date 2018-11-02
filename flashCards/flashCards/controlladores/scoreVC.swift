@@ -33,8 +33,6 @@ class scoreVC: UIViewController {
     var displayLink: CADisplayLink?
     //variable para el confetti
     var confettiView:SAConfettiView?
-    
-    @IBOutlet weak var confetiview: UIView!
     //conexion con el maaged context para la base de datos
     let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     //arreglo para traer la cantidad de palabras
@@ -158,8 +156,7 @@ class scoreVC: UIViewController {
     }
     //funcion para regresar a la pagina principal
     @IBAction func backWasPressed(_ sender: Any) {
-        let rootViewGame = self.storyboard?.instantiateViewController(withIdentifier: "viewMain")
-        self.present(rootViewGame!, animated: true, completion: nil)
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
     }
     //funcion para regresar a la pagina de jugar de nuevo
     @IBAction func tryAgainWasPressed(_ sender: Any) {
