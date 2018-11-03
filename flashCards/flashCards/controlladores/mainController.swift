@@ -232,5 +232,22 @@ extension mainController: UIPickerViewDelegate, UIPickerViewDataSource {
         selectedGroup = groupsSheet[row]
     }
     
+    
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 50
+    }
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        let view  = UIView(frame:CGRect(x: 0, y: 0, width: 100, height: 200))
+        let categorioLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        categorioLabel.text = groupsSheet[row].group
+        categorioLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        categorioLabel.textAlignment = .center
+        categorioLabel.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.thin)
+        view.addSubview(categorioLabel)
+        return view
+    }
+    
+    
 }
 
