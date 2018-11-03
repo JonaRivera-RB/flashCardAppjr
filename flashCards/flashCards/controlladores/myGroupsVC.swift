@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SCLAlertView
 
 class myGroupsVC: UIViewController {
     
@@ -61,6 +62,36 @@ class myGroupsVC: UIViewController {
     //creamos un alertController.addTextField para añadir el textfield y le pasamos valores al placeholder
     //y recibimos el nombre mediante namegroup
     @IBAction func addGroupBtnWasPressed(_ sender: Any) {
+    
+        let appearance = SCLAlertView.SCLAppearance(
+            showCloseButton: false
+        )
+        let alert = SCLAlertView(appearance: appearance)
+       // let alert = SCLAlertView()
+        //SCLAlertView().showError("Hello Error", subTitle: "This is a more descriptive error text.")
+        let txt = alert.addTextField("Enter the name of your category")
+        alert.addButton("Save") {
+            if txt.text != "" {
+                let group = Groups(context: self.managedContext)
+                group.group = txt.text!
+                
+                group.color = self.getRandomColor()
+                self.myGroups.append(group)
+                self.grupuTableView.isHidden = false
+                self.grupuTableView.reloadData()
+                //mandar a verificar si ya no tenemos datos
+                self.saveInCoreData()
+            }
+            else {
+                self.showAlert()
+            }
+            }
+            print("Text value: \(txt.text!)")
+        alert.showEdit("New category", subTitle: "What is the name of your category?")
+        
+       
+        // Add a text field
+        /*
         var nameGroup = UITextField()
         
         let alertController = UIAlertController(title: "Nuevo grupo", message: "Nombre de tu grupo?", preferredStyle: .alert)
@@ -80,6 +111,7 @@ class myGroupsVC: UIViewController {
                 self.showAlert()
             }
         }
+ 
         alertController.addTextField { (textFieldGroup) in
             textFieldGroup.placeholder = "Nombre de tu nuevo grupo"
             nameGroup = textFieldGroup
@@ -89,14 +121,11 @@ class myGroupsVC: UIViewController {
         alertController.addAction(alertAction)
         alertController.addAction(alertActionCancel)
         present(alertController, animated: true)
-        
+        */
     }
     //funcion para mostrar alert d que faltaron datos
     func showAlert() {
-        let alertController = UIAlertController(title: "Ups", message: "Tienes que ponerle un nombre a la categoria", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alertController.addAction(alertAction)
-        present(alertController, animated: true, completion: nil)
+        SCLAlertView().showError("Ups", subTitle: "You have to name your category")
     }
     //funcion para guardar en la base de datos
 func saveInCoreData() {

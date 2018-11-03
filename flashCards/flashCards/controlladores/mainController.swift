@@ -8,6 +8,8 @@
 //hacer peticion al cargar la vista si no tiene datos no hay que mostrar
 import UIKit
 import CoreData
+import SCLAlertView
+
 class mainController: UIViewController {
     //arreglo para traer todas las palabras
     var totalWords = [Words]()
@@ -66,7 +68,7 @@ class mainController: UIViewController {
     //si no es cero, hacemos una peticion a la base de datos para saber si ese grupo tiene palabras o no
     @IBAction func playBtnWasPressed(_ sender: Any) {
         if total == 0 {
-            showAlert(forAlextText: "Tienes que agregar palabras antes de poder jugar.")
+            showAlert(forAlextText: "You have to add words to play.")
         }
         else {
         fetchCoreDataObjectsGroupsWords()
@@ -74,10 +76,7 @@ class mainController: UIViewController {
     }
     //funcion para crear una alerta
     func showAlert(forAlextText alertText:String){
-        let alert = UIAlertController(title: "Ups", message: alertText, preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
-        alert.addAction(alertAction)
-        present(alert, animated: true, completion: nil)
+        SCLAlertView().showNotice("Ups", subTitle: alertText)
     }
    
     //preparamos la vista para pasar a la siguiente preguntamos si tiene como destino la vista
@@ -149,11 +148,12 @@ class mainController: UIViewController {
                     }
                         performSegue(withIdentifier: "showPlay", sender: self)
                 } else {
-                    self.showAlert(forAlextText: "Tienes que agregar mas palabras antes de poder jugar.")
+                    self.showAlert(forAlextText: "You have to add more words to play.")
                 }
             }
                 else {
-                self.showAlert(forAlextText: "Tienes que agregarle palabras a esta categoria antes de poder jugar.")
+                //Tienes que agregarle palabras a esta categoria antes de poder jugar
+                self.showAlert(forAlextText: "You have to add more words to this category to play.")
                 }
             }
         }
@@ -230,6 +230,20 @@ extension mainController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedGroup = groupsSheet[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 50
+    }
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        let view  = UIView(frame:CGRect(x: 0, y: 0, width: 100, height: 200))
+        let categorioLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
+        categorioLabel.text = groupsSheet[row].group
+        categorioLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        categorioLabel.textAlignment = .center
+        categorioLabel.font = UIFont.systemFont(ofSize: 30, weight: UIFont.Weight.thin)
+        view.addSubview(categorioLabel)
+        return view
     }
     
 }

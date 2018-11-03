@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SCLAlertView
 
 class addwordVC: UIViewController {
     
@@ -42,10 +43,7 @@ class addwordVC: UIViewController {
             }
         }
         else {
-            let alert = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            let alertContent = UIAlertController(title: "Datos incompletos 🤕", message: "Al parecer te faltan datos por llenar🤔", preferredStyle: .alert)
-            alertContent.addAction(alert)
-            present(alertContent, animated: true, completion: nil)
+            SCLAlertView().showWarning("Incomplete data", subTitle: "Apparently your data is incomplete 🤔")
         }
     }
     
