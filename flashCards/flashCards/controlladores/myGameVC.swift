@@ -17,6 +17,8 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var acepBtn: vistaBotones!
     @IBOutlet weak var viewMove: sombraVista!
     @IBOutlet weak var cargarViewGame: UIView!
+    @IBOutlet weak var bocina: UIButton!
+    
     //var words:[Words]!
     var wordsForLearn:[Words]!
     
@@ -26,6 +28,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     var selectedGroup2 : Groups?
     var switchOn:Bool = false
     var correctAnswer = 0
+    var skipWord = 0
     var incorrectanswer = 0
     var puntos = 0
     
@@ -121,7 +124,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let myScoreVC = segue.destination as? scoreVC {
-            myScoreVC.getData(correct: correctAnswer, incorrect: incorrectanswer, learned: learned, myPts: puntos)
+            myScoreVC.getData(correct: correctAnswer, incorrect: incorrectanswer, learned: learned, myPts: puntos, skipWord: skipWord)
         }
     }
     //funcion para actualizar vistas, txt y botones cuando se pasa a la siguiente palabra
@@ -138,8 +141,8 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     //funcion donde indica que el boton de regresar fue presionado
     //y mostramos una alerta
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Estas seguro?", message: "Estas seguro que quieres salir?, perderas todo tu progreso.", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        let alert = UIAlertController(title: "Are you sure?", message: "If you exit of game, you will lose your progress.😰", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let alertAction2 = UIAlertAction(title: "Ok", style: .default) { (alertAction2) in
             self.dismiss(animated: true, completion: nil)
         }
@@ -168,11 +171,13 @@ class myGameVC: UIViewController, UITextFieldDelegate {
             } else {
                 self.transitionLeft()
             }
+            self.bocina.isHidden = false
         }
         
     }
     //boton para saltar pregunta
     @IBAction func skipBtanWasPressed(_ sender: Any) {
+        skipWord += 1
         numberWord += 1
         if puntos > 0 {
             puntos -= 1
@@ -214,23 +219,25 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         if answerTxt.text != "" {
             if correctAnswer == answerTxt.text
             {
+                self.bocina.isHidden = true
                 setProgress(atNumber: self.numberWord)
                 self.correctAnswer += 1
                 self.transitionLeft()
-                print("correcto")
+                print("correct")
                 wordLbl.textColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
                 viewMove.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
-                wordLbl.text = "correcto!"
+                wordLbl.text = "correct🥳!"
                 lado = true
                 puntos += 1
             }
             else {
+                self.bocina.isHidden = true
                 self.incorrectanswer += 1
-                print("incorrecto")
+                print("incorrect")
                 transitionRight()
                 wordLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 viewMove.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-                wordLbl.text = "incorrecto!"
+                wordLbl.text = "incorrect😞!"
                 lado = false
             }
         }

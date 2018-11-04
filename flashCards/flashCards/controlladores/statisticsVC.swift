@@ -13,11 +13,16 @@ class statisticsVC: UIViewController {
 
     @IBOutlet weak var linechartView: PieChartView!
     
-    var wordsLearned = PieChartDataEntry(value: 0)
+    var wordsSkip = PieChartDataEntry(value: 0)
     var wordsIncorrect = PieChartDataEntry(value: 0)
     var wordsCorrect = PieChartDataEntry(value: 0)
     
     var numberOflearned = [PieChartDataEntry]()
+    
+    @IBOutlet weak var labelStatistics: UILabel!
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var learnedLabel: UILabel!
+    @IBOutlet weak var studyingLevel: UILabel!
     
     let shapeLayer = CAShapeLayer()
     
@@ -26,21 +31,43 @@ class statisticsVC: UIViewController {
         
         linechartView.chartDescription?.text = "Your statistics"
         linechartView.centerText = "My words"
-        let learnedWords:Int = UserDefaults.standard.integer(forKey: "learned")
-        
-        if learnedWords != 0 {
-            wordsLearned.value = Double(learnedWords)
-        }
-        
-        wordsCorrect.value = 30.0
+       
+        wordsSkip.label = "Skiped"
         wordsCorrect.label = "Correct"
-        
-        wordsIncorrect.value = 40.0
         wordsIncorrect.label = "Incorrect"
         
-        numberOflearned = [wordsLearned,wordsIncorrect,wordsCorrect]
-        updateChartData()
+       
         
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        let wordsSkiped:Int = UserDefaults.standard.integer(forKey: "skip")
+        let learned:Int = UserDefaults.standard.integer(forKey: "learned")
+        let correct:Int = UserDefaults.standard.integer(forKey: "correct")
+        let incorrect:Int = UserDefaults.standard.integer(forKey: "incorrect")
+        let totalWords:Int = UserDefaults.standard.integer(forKey: "totalWords")
+        let mylevel = UserDefaults.standard.integer(forKey: "yourLevel")
+        
+        levelLabel.text = "Level \(mylevel)"
+        learnedLabel.text = String(learned)
+        studyingLevel.text = String(totalWords)
+        if wordsSkiped != 0 {
+            wordsSkip.value = Double(wordsSkiped)
+        }
+        if correct != 0 {
+            wordsCorrect.value = Double(correct)
+        }
+        if incorrect != 0 {
+            wordsIncorrect.value = Double(incorrect)
+        }
+        if wordsSkiped != 0 || correct != 0 || incorrect != 0 {
+            linechartView.isHidden = false
+            labelStatistics.isHidden = true
+            numberOflearned = [wordsSkip,wordsIncorrect,wordsCorrect]
+            updateChartData()
+        } else{
+            linechartView.isHidden = true
+            labelStatistics.isHidden = false
+        }
     }
     @objc private func handleTop() {
     let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
@@ -55,7 +82,7 @@ class statisticsVC: UIViewController {
         let chartDataSet = PieChartDataSet(values: numberOflearned, label: nil)
         let chartData = PieChartData(dataSet: chartDataSet)
         
-        let colors = [#colorLiteral(red: 0.2039215686, green: 0.2862745098, blue: 0.3529411765, alpha: 1) , #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1) , #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)]
+        let colors = [#colorLiteral(red: 0.1254901961, green: 0.6980392157, blue: 0.6666666667, alpha: 1) ,  #colorLiteral(red: 0.9019607843, green: 0, blue: 0, alpha: 1),#colorLiteral(red: 0.09019608051, green: 0, blue: 0.3019607961, alpha: 1) ]
         chartDataSet.colors = colors 
         linechartView.data = chartData
         

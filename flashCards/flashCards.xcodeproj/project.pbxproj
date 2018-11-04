@@ -26,6 +26,7 @@
 		13F19708210A4FB20033EF05 /* vistaBotones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F19707210A4FB20033EF05 /* vistaBotones.swift */; };
 		13F1970A210A8A150033EF05 /* myWordsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F19709210A8A150033EF05 /* myWordsVC.swift */; };
 		13F7E61221253DD200C68CA6 /* myGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F7E61121253DD200C68CA6 /* myGroupsVC.swift */; };
+		13FE4456218F8F1B00810BB6 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FE4455218F8F1B00810BB6 /* AboutViewController.swift */; };
 		C265B405851B7E8854858F52 /* Pods_flashCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FCF9AC7F30D1E5687A42C17 /* Pods_flashCards.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		13F19707210A4FB20033EF05 /* vistaBotones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vistaBotones.swift; sourceTree = "<group>"; };
 		13F19709210A8A150033EF05 /* myWordsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myWordsVC.swift; sourceTree = "<group>"; };
 		13F7E61121253DD200C68CA6 /* myGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myGroupsVC.swift; sourceTree = "<group>"; };
+		13FE4455218F8F1B00810BB6 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2EB8D8FE548A4A96FAF4F675 /* Pods-flashCards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashCards.release.xcconfig"; path = "Pods/Target Support Files/Pods-flashCards/Pods-flashCards.release.xcconfig"; sourceTree = "<group>"; };
 		6FCF9AC7F30D1E5687A42C17 /* Pods_flashCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flashCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91E80B9E493E38F2BC7E677 /* Pods-flashCards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashCards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flashCards/Pods-flashCards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				13F7E61121253DD200C68CA6 /* myGroupsVC.swift */,
 				138234EF21475EBF00D5EACE /* scoreVC.swift */,
 				133D8733214F4DD200728394 /* statisticsVC.swift */,
+				13FE4455218F8F1B00810BB6 /* AboutViewController.swift */,
 			);
 			path = controlladores;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				131423DE21137EDE00A041CE /* myGameVC.swift in Sources */,
 				13F19706210A4C630033EF05 /* vistaBoton.swift in Sources */,
 				13BAF97C2125A8EE00ED7A8E /* groupCell.swift in Sources */,
+				13FE4456218F8F1B00810BB6 /* AboutViewController.swift in Sources */,
 				134A737521311538008629E5 /* groupsColor.swift in Sources */,
 				13F1970A210A8A150033EF05 /* myWordsVC.swift in Sources */,
 				13BA8EC7210EA85B00FBEAF5 /* wordCell.swift in Sources */,

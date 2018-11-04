@@ -22,6 +22,7 @@ class scoreVC: UIViewController {
     //variables necesarias
     var correct = 0
     var incorrect = 0
+    var skiped = 0
     var learned = 0
     var levelPts = 10
     var myPts = 0
@@ -54,11 +55,24 @@ class scoreVC: UIViewController {
     }
     
     //funcion para obtener los datos de como estuvo tu juego
-    func getData( correct:Int, incorrect:Int, learned: Int , myPts:Int)
+    func getData( correct:Int, incorrect:Int, learned: Int , myPts:Int, skipWord:Int)
     {
         self.correct = correct
         self.incorrect = incorrect
         self.learned = learned
+        self.skiped = skipWord
+        
+        var sumaPre = UserDefaults.standard.integer(forKey: "correct")
+        var incorrectPre = UserDefaults.standard.integer(forKey: "incorrect")
+        var skipPre = UserDefaults.standard.integer(forKey: "skip")
+        sumaPre += correct
+        incorrectPre += incorrect
+        skipPre += skipWord
+        
+        UserDefaults.standard.set(sumaPre, forKey: "correct")
+        UserDefaults.standard.set(incorrectPre, forKey: "incorrect")
+        UserDefaults.standard.set(skipPre, forKey: "skip")
+        
         print("mis puntos primer filtro \(self.myPts)")
         self.myPts = userDefaultPoints.integer(forKey: "myPoints")
         

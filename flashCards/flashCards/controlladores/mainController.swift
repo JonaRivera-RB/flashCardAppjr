@@ -50,17 +50,12 @@ class mainController: UIViewController {
         //preguntamos si el total de palabras es igual a 0 mostramos mensaje en el lbl mensaje
         //si no mostramos otro mensaje
         if total == 0 {
-            mensageLbl.text = "Aun no tienes palabras por estudiar 😭"
+            
+            mensageLbl.text = "You don't have words to learn.😭"
         } else {
-            mensageLbl.text = "Memoriza tus palabras, tienes \(total) por aprender. 🤓"
+            //
+            mensageLbl.text = "Memorize your word, you have \(total) to learn.🤓"
         }
-    }
-    @IBAction func statisticsBtnWasPressed(_ sender: Any) {
-        let alertController = UIAlertController(title: "Ups", message: "coming soon", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-        alertController.addAction(alertAction)
-        present(alertController, animated: true, completion: nil)
-       // performSegue(withIdentifier: "showStatistics", sender: self)
     }
     
     //funcion para el boton cuando es presionado
@@ -95,6 +90,7 @@ class mainController: UIViewController {
         self.loadDataCoreData { (completion) in
             if completion {
                 if totalWords.count >= 1 {
+                    UserDefaults.standard.set(totalWords.count, forKey: "totalWords")
                     total = totalWords.count
                 } else {
                     total = 0
