@@ -22,6 +22,7 @@ class vistaBoton: UIButton {
         let path = UIBezierPath(roundedRect: layer.bounds, byRoundingCorners: [.bottomRight, .bottomLeft], cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
          mask.path = path.cgPath
+        layer.shadowOpacity = 0.5
          layer.mask = mask
 /*
          

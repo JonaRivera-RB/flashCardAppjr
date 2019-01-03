@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SCLAlertView
+import GoogleMobileAds
 
 class mainController: UIViewController {
     //arreglo para traer todas las palabras
@@ -28,10 +29,19 @@ class mainController: UIViewController {
     @IBOutlet weak var mensageLbl: UILabel!
     @IBOutlet weak var groupsPicker: UIPickerView!
     
+    //anuncios
+    
+    @IBOutlet weak var bannerView: GADBannerView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         groupsPicker.delegate = self
         groupsPicker.dataSource = self
+        
+        //anuncios
+        bannerView.adUnitID = "ca-app-pub-5222742314105921/6585214830"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
     }
     
     //cuando la vista carga hacemos una peticion a la base de datos para traer las palabras
@@ -54,7 +64,7 @@ class mainController: UIViewController {
             mensageLbl.text = "You don't have words to learn.😭"
         } else {
             //
-            mensageLbl.text = "Memorize your word, you have \(total) to learn.🤓"
+            mensageLbl.text = "Memorize your words, you have \(total) to learn.🤓"
         }
     }
     

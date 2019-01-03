@@ -9,14 +9,28 @@
 import UIKit
 import CoreData
 import SCLAlertView
+import GoogleMobileAds
 
 class myGroupsVC: UIViewController {
     
     @IBOutlet weak var grupuTableView: UITableView!
     
     let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+
     var myGroups:[Groups] = []
     
+    //arreglo para traer todos las palabras:
+    var totalWords = [Words]()
+    //variable para traer la cantidad de palabras
+    var total:Int = 0
+    //variable para el grupo seleccionado el cual lo mandamos a la siguiente vista
+    var selectedGroup:Groups!
+    //arreglo para traer las palabras que tiene un grupo en especifico
+    var words=[Words]()
+    var wordsForLearn=[Words]()
+    //anuncios
+    
+    var interstitial: GADInterstitial!
     override func viewDidLoad() {
         super.viewDidLoad()
         grupuTableView.delegate = self
@@ -24,7 +38,10 @@ class myGroupsVC: UIViewController {
         grupuTableView.isHidden = false
     }
     //cuando la vista carge mandamos a llamar la funcion para traer datos de la base de datos
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) { //anuncio
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-5222742314105921/4884834943")
+        let request = GADRequest()
+        interstitial.load(request)
        fetchCoreDataObjects()
     }
     //creamos funcion para mandar a llamar los datos de la base de datos y revisar que todo salio bien
@@ -69,8 +86,9 @@ class myGroupsVC: UIViewController {
         let alert = SCLAlertView(appearance: appearance)
        // let alert = SCLAlertView()
         //SCLAlertView().showError("Hello Error", subTitle: "This is a more descriptive error text.")
-        let txt = alert.addTextField("Enter the name of your category")
-        alert.addButton("Save") {
+        //("Enter the name of your category")
+        let txt = alert.addTextField("Introduce el nombre de tu categoria")
+        alert.addButton("Guardar") {
             if txt.text != "" {
                 let group = Groups(context: self.managedContext)
                 group.group = txt.text!
@@ -81,51 +99,29 @@ class myGroupsVC: UIViewController {
                 self.grupuTableView.reloadData()
                 //mandar a verificar si ya no tenemos datos
                 self.saveInCoreData()
+                if self.interstitial.isReady {
+                    self.interstitial.present(fromRootViewController: self)
+                } else {
+                    print("Ad wasn't ready")
+                }
             }
             else {
                 self.showAlert()
             }
             }
             print("Text value: \(txt.text!)")
-        alert.showEdit("New category", subTitle: "What is the name of your category?")
-        
-       
-        // Add a text field
-        /*
-        var nameGroup = UITextField()
-        
-        let alertController = UIAlertController(title: "Nuevo grupo", message: "Nombre de tu grupo?", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Ok", style: .default) { (alertAction) in
-            if nameGroup.text != "" {
-            let group = Groups(context: self.managedContext)
-            group.group = nameGroup.text!
-            
-            group.color = self.getRandomColor()
-            self.myGroups.append(group)
-            self.grupuTableView.isHidden = false
-            self.grupuTableView.reloadData()
-            //mandar a verificar si ya no tenemos datos
-            self.saveInCoreData()
-            }
-            else {
-                self.showAlert()
-            }
-        }
- 
-        alertController.addTextField { (textFieldGroup) in
-            textFieldGroup.placeholder = "Nombre de tu nuevo grupo"
-            nameGroup = textFieldGroup
-        }
-        let alertActionCancel = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
-        
-        alertController.addAction(alertAction)
-        alertController.addAction(alertActionCancel)
-        present(alertController, animated: true)
-        */
+        //alert.showEdit("New category", subTitle: "What is the name of your category?")
+        alert.showEdit("Nueva categoria", subTitle: "Cual es el nombre de tu categoria?")
     }
+    
     //funcion para mostrar alert d que faltaron datos
     func showAlert() {
-        SCLAlertView().showError("Ups", subTitle: "You have to name your category")
+        if self.interstitial.isReady {
+            self.interstitial.present(fromRootViewController: self)
+        } else {
+            print("Ad wasn't ready")
+        }
+        SCLAlertView().showError("Ups", subTitle: "Tu tienes que nombrar tu categoria")
     }
     //funcion para guardar en la base de datos
 func saveInCoreData() {
@@ -162,7 +158,9 @@ func saveInCoreData() {
             debugPrint("could not remove group: \(error.localizedDescription)")
         }
     }
+    
 }
+
 
 
 //creamos una extension de myGroupsVC para la tabla
@@ -177,11 +175,15 @@ extension myGroupsVC : UITableViewDelegate, UITableViewDataSource {
     }
     //devolvemos el contenido que tedra cada celda
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell") as? groupCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "groupCell" , for: indexPath) as? GroupCell else { return UITableViewCell() }
+    
         let group = myGroups[indexPath.row]
         cell.configureGroupCell(forGroupName: group)
+      cell.playBtn.addTarget(self, action: #selector(playBtnWasPressed(_:)), for: .touchUpInside)
         return cell
+
     }
+    
     //le decimos que podemos editar la tabla
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -207,10 +209,88 @@ extension myGroupsVC : UITableViewDelegate, UITableViewDataSource {
     }
     //preparamos la siguiente vista
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let wordsVC = segue.destination as! myWordsVC
-        if let indexPath = grupuTableView.indexPathForSelectedRow {
-            wordsVC.selectedGroup = myGroups[indexPath.row]
+        if let wordsVC = segue.destination as? myWordsVC {
+            if let indexPath = grupuTableView.indexPathForSelectedRow {
+                wordsVC.selectedGroup = myGroups[indexPath.row]
+            }
+        }
+       
+        
+        else if let myPlayVC = segue.destination as? myGameVC {
+            myPlayVC.selectedGroup2 = selectedGroup
+            myPlayVC.wordsForLearn = wordsForLearn
+        }
+    }
+    @IBAction func playBtnWasPressed(_ button: UIButton) {
+        if let indexPath = self.grupuTableView.indexPathForView(button) {
+            selectedGroup = myGroups[indexPath.row]
+            fetchCoreDataObjectsGroupsWords()
+        }
+        else {
+            print("Button indexPath not found")
         }
     }
     
+}
+
+extension myGroupsVC {
+
+    
+    func fetchCoreDataObjectsGroupsWords() {
+        var wordForLearn = 0
+        wordsForLearn = [Words]()
+        self.loadDataCoreDataGroup { (completion) in
+            if completion {
+                for word in words {
+                    if word.goal != word.goalCompletion {
+                        wordForLearn += 1
+                        wordsForLearn.append(word)
+                    }
+                }
+                if wordForLearn >= 3 {
+                    if wordForLearn >= 15 {
+                       // self.getWordsRandom()
+                    }
+                    print("jugar!")
+                   performSegue(withIdentifier: "showPlay", sender: self)
+                } else {
+                    let appearance = SCLAlertView.SCLAppearance(
+                        showCloseButton: false
+                    )
+                    let alert = SCLAlertView(appearance: appearance)
+                    alert.addButton("Okay") {
+                        if self.interstitial.isReady {
+                            self.interstitial.present(fromRootViewController: self)
+                        } else {
+                            print("Ad wasn't ready")
+                        }
+                    }
+                    alert.showInfo("Ups", subTitle: "Tienes que agregar mas palabras para jugar")
+                }
+            }
+            else {
+                SCLAlertView().showInfo("Ups", subTitle: "Tienes que agregar mas palabras para jugar")
+            }
+        }
+    }
+    
+    
+    //funcion para hacer la peticion a la base de datos
+    //donde hacemos una peticion a la base de datos Words donde introducimos un filtrado para obtener
+    //solo el numero de palabras que tengan la relacion con el grupo
+    func loadDataCoreDataGroup( with request: NSFetchRequest<Words> = Words.fetchRequest(), completion: (_ completion: Bool) ->()) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        // let fetchRequest = NSFetchRequest<Words>(entityName: "Words")
+        let predicate = NSPredicate(format: "wordsRelation.group MATCHES %@", selectedGroup!.group!)
+        //myGroups[indexPath.row] selectedGroup!.group!
+        request.predicate = predicate
+        do {
+            words = try managedContext.fetch(request)
+            print("successfully fetched data")
+            completion(true)
+        } catch {
+            debugPrint("could not fetch: \(error.localizedDescription)")
+            completion(false)
+        }
+    }
 }

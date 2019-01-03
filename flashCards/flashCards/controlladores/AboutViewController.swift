@@ -44,6 +44,11 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
         controller.dismiss(animated: true, completion: nil)
         
     }
+    @IBAction func howToPlayBtnWasPressed(_ sender: Any) {
+        //SCLAlertView().showInfo("Important info", subTitle: "First.- Add new category on your library. \n Second.- Add three or more words and the times you want to practice this word. \n Third.- Practice your words on the playground.\n Fourth.- Check your statistics. \n If you have a problem contact us")
+        SCLAlertView().showInfo("Información importante", subTitle: "Primero.- Tienes que agregar una categoria a tu libreria. \n\n Segundo.- Agrega 3 o mas palabras para que puedas practicarlas. \n\n Tercero.- Practicas tus palabras!.\n\n Cuarto.- Revisa tus estadisticas!, sube de nivel y aprnede mucho!. \n\n Quinto.- Practica las palabras que ya existen en la app!. \n\n Si tienes un problema contactanos")
+    }
+    
 }
 /*
 func rateApp(){

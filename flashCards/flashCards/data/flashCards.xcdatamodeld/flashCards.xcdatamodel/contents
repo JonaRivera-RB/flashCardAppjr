@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Groups" representedClassName="Groups" syncable="YES" codeGenerationType="class">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18B75" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Groups" representedClassName=".Groups" syncable="YES" codeGenerationType="class">
         <attribute name="colorHex" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="group" attributeType="String" syncable="YES"/>
         <relationship name="groupRelation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Words" inverseName="wordsRelation" inverseEntity="Words" syncable="YES"/>
     </entity>
-    <entity name="Words" representedClassName="Words" syncable="YES" codeGenerationType="class">
+    <entity name="GroupsSections" representedClassName=".GroupsSections" syncable="YES" codeGenerationType="class">
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nameGroup" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groupSectionRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Sections" inverseName="sectionRelation" inverseEntity="Sections" syncable="YES"/>
+        <relationship name="groupsSectionRelationToWords" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WordsSections" inverseName="wordsSectionRelation" inverseEntity="WordsSections" syncable="YES"/>
+    </entity>
+    <entity name="Sections" representedClassName=".Sections" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sectionRelation" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="GroupsSections" inverseName="groupSectionRelation" inverseEntity="GroupsSections" syncable="YES"/>
+    </entity>
+    <entity name="Words" representedClassName=".Words" syncable="YES" codeGenerationType="class">
         <attribute name="goal" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="goalCompletion" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="translate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="word" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="wordsRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Groups" inverseName="groupRelation" inverseEntity="Groups" syncable="YES"/>
     </entity>
+    <entity name="WordsSections" representedClassName=".WordsSections" syncable="YES" codeGenerationType="class">
+        <attribute name="goalCompletionSection" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="goalSection" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="translateSection" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wordSection" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="wordsSectionRelation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GroupsSections" inverseName="groupsSectionRelationToWords" inverseEntity="GroupsSections" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Groups" positionX="-261" positionY="-9" width="128" height="88"/>
-        <element name="Words" positionX="-63" positionY="-18" width="128" height="118"/>
+        <element name="Groups" positionX="-239.4296875" positionY="-105.703125" width="128" height="88"/>
+        <element name="Words" positionX="-2.3203125" positionY="-136.2421875" width="128" height="118"/>
+        <element name="Sections" positionX="-438.7109375" positionY="-289.94140625" width="128" height="73"/>
+        <element name="GroupsSections" positionX="-243.0078125" positionY="-285.01171875" width="128" height="103"/>
+        <element name="WordsSections" positionX="17.33203125" positionY="-286.4296875" width="128" height="118"/>
     </elements>
 </model>

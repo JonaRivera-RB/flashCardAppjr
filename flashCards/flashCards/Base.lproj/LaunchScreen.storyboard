@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logoflashcard" translatesAutoresizingMaskIntoConstraints="NO" id="sVy-5A-VhP">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ffff" translatesAutoresizingMaskIntoConstraints="NO" id="sVy-5A-VhP">
                                 <rect key="frame" x="94" y="233.5" width="187.5" height="200"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by Jonathan Rivera" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="do6-B7-HjS">
@@ -46,6 +46,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logoflashcard" width="245.75999450683594" height="245.75999450683594"/>
+        <image name="ffff" width="245.760498046875" height="245.760498046875"/>
     </resources>
 </document>

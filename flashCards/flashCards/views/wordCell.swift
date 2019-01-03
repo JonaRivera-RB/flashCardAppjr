@@ -8,7 +8,7 @@
 
 import UIKit
 
-class wordCell: UITableViewCell {
+class WordCell: UITableViewCell {
     @IBOutlet weak var wordDescriptionLbl: UILabel!
     @IBOutlet weak var wordTranslateLbl: UILabel!
     @IBOutlet weak var wordProgressLbl: UILabel!

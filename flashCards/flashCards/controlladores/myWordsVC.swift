@@ -57,10 +57,12 @@ class myWordsVC: UIViewController {
     @IBAction func addWordBtnWasPressed(_ sender: Any) {
         performSegue(withIdentifier: "addWord", sender: self)
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let wordVC = segue.destination as! addwordVC
         wordVC.grupoSeleccionado = selectedGroup!
     }
+    
     @IBAction func backBtnWassPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -87,10 +89,11 @@ extension myWordsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //creamos una constante que hace refernecia al diseño de la table
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? wordCell else {return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as? WordCell else {return UITableViewCell() }
         let word = words[indexPath.row]
         //configuramos la celda con lo que telga la constante word y lo regresamos
         cell.configureCell(word: word)
+        cell.selectionStyle = UITableViewCell.SelectionStyle.none
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

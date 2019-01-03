@@ -8,13 +8,21 @@
 
 import UIKit
 
-class groupCell: UITableViewCell {
+class GroupCell: UITableViewCell {
     
     @IBOutlet weak var groupName: UILabel!
     @IBOutlet weak var groupColor: UIView!
+    @IBOutlet weak var playBtn: UIButton!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
     func configureGroupCell(forGroupName groupName: Groups) {
         self.groupName.text = groupName.group
         self.groupColor.backgroundColor = groupName.color
+        self.playBtn.setTitleColor(groupName.color, for: .normal)
+    }
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
     }
 }
