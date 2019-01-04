@@ -25,9 +25,11 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var viewPrin: UIView!
     @IBOutlet weak var card: sombraVista!
     @IBOutlet weak var wordShow: UILabel!
+    @IBOutlet var activateGesture: UIPanGestureRecognizer!
     
     
     var wordsForLearn:WordsBankStruck?
+    var wordsForShow:WordsBankStruck?
     
     var numberWord:Int = 0
     var lado:Bool!
@@ -37,7 +39,10 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     var incorrectanswer = 0
     var puntos = 0
     
-    var ejemplo:Bool = true
+    var cartaVista:Bool = false
+    
+    //anuncios
+    var interstitial: GADInterstitial!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +53,10 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         viewAnuncios.rootViewController = self
         viewAnuncios.load(GADRequest())
         
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-5222742314105921/4884834943")
+        let request = GADRequest()
+        interstitial.load(request)
         
-        //agregamos esto
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        card.addGestureRecognizer(tap)
     }
         //agregamos esto
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -59,6 +64,13 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         }
     
     override func viewWillAppear(_ animated: Bool) {
+        //agregamos esto
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        card.addGestureRecognizer(tap)
+        activateGesture.isEnabled = false
+        wordsForShow = wordsForLearn
+        wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
+        
         updateVaribles()
         updateViews()
         nextWord()
@@ -253,7 +265,7 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         alert.addAction(alertAction2)
         present(alert, animated: true, completion: nil)
     }
-    //agregamos esto
+    //agregamos la opcion de poder mover la imagen
     @IBAction func panGestureCard(_ sender: UIPanGestureRecognizer) {
         let card  = sender.view!
         let point = sender.translation(in: view)
@@ -267,7 +279,9 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
                     card.center = CGPoint(x: card.center.x - 200, y: card.center.y + 25)
                     card.alpha = 0
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-                        self.resetCard()
+                        if(self.updateCard()){
+                            self.resetCard()
+                        }
                     })
                 }
                 return
@@ -277,7 +291,9 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
                     card.center = CGPoint(x: card.center.x + 200, y: card.center.y + 25)
                     card.alpha = 0
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
-                        self.resetCard()
+                        if(self.updateCard()){
+                            self.resetCard()
+                        }
                     })
                 }
                 return
@@ -285,29 +301,66 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
             resetCard()
         }
     }
+    
+    //funcion para poner la carta en su mismo lugar
     func resetCard() {
         UIView.animate(withDuration: 0.2) {
             self.card.center = CGPoint(x: self.view.center.x, y: self.view.center.y-60)
             self.card.alpha = 1
         }
+        
     }
+    //funcion para eliminar la palabra que ya vimos
+    //activar la opcion de poder saltar a otra palabra
+    func updateCard() -> Bool{
+        wordsForShow!.wordsArrayPhone.remove(at: 0)
+        activateGesture.isEnabled = false
+        if wordsForShow!.wordsArrayPhone.count > 0 {
+            wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
+            cartaVista = false
+            return true
+        }else{
+            if self.interstitial.isReady {
+                self.interstitial.present(fromRootViewController: self)
+            } else {
+                print("Ad wasn't ready")
+            }
+            hiddenView(view: viewPrin)
+            return false
+        }
+    }
+    //funcion para girar la carta
     func transitionLeft(view:UIView) {
         UIView.transition(with: view, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
     }
     func transitionRight(view:UIView) {
         UIView.transition(with: view, duration: 0.3, options: .transitionFlipFromRight, animations: nil, completion: nil)
     }
+    
+    //funcion para configurar las palabras que tenemos que aprendernoslas
     func setWordAndTranslateWithAnimation(view :UIView){
-        
-        if ejemplo
+        if wordsForShow!.wordsArrayPhone.count > 0 {
+            if cartaVista
         {
-            wordShow.text = "Principal 1"
+            wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
             transitionRight(view: view)
-            ejemplo = false
+            cartaVista = false
         }else{
-            wordShow.text = "Principal 2"
+            wordShow.text = wordsForShow!.wordsArrayPhone.first!.translate
             transitionLeft(view: view)
-            ejemplo = true
+            cartaVista = true
+            activateGesture.isEnabled = true
+            }
         }
+    }
+    //funcion para ocultar la vista y mostrar la vista de juego
+    func hiddenView(view: UIView) {
+        
+        UIView.animate(withDuration: 0.5, delay: 1.0, options: .curveEaseOut, animations: {
+            view.alpha = 0.0
+        }, completion: { (true) in
+            view.isHidden = true
+            print("juego listo")
+        })
     }
 }

@@ -1964,6 +1964,7 @@
                         <viewLayoutGuide key="safeArea" id="Mf8-cA-2u4"/>
                     </view>
                     <connections>
+                        <outlet property="activateGesture" destination="fLq-ap-EZV" id="tbN-ro-b38"/>
                         <outlet property="answertxt" destination="5hT-rb-zjQ" id="VF1-f5-fTq"/>
                         <outlet property="card" destination="br9-pD-x9J" id="x1G-cu-Fa2"/>
                         <outlet property="checkAnswerBtn" destination="w7Q-Kt-jd9" id="Hcp-gc-awD"/>
