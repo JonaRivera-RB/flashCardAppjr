@@ -42,6 +42,8 @@ class scoreVC: UIViewController {
     
     //anuncios
     @IBOutlet weak var bannerView: GADBannerView!
+    var interstitial: GADInterstitial!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCoreDataObjects()
@@ -52,8 +54,11 @@ class scoreVC: UIViewController {
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         
+         interstitial = GADInterstitial(adUnitID: "ca-app-pub-5222742314105921/4884834943")
+         let request = GADRequest()
+         interstitial.load(request)
+        
     }
-    
     //cuando la vista aparezca y transcurra un segundo cargamos la animacion
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1/5), execute: {
@@ -61,8 +66,17 @@ class scoreVC: UIViewController {
             self.displayLink = CADisplayLink(target: self, selector: #selector(self.handleUpdate))
             self.displayLink?.add(to: .main, forMode: .default)
         })
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.showAnuncio()
+        }
     }
-    
+    func showAnuncio(){
+        if self.interstitial.isReady {
+            self.interstitial.present(fromRootViewController: self)
+        } else {
+            print("Ad wasn't ready")
+        }
+    }
     //funcion para obtener los datos de como estuvo tu juego
     func getData( correct:Int, incorrect:Int, learned: Int , myPts:Int, skipWord:Int)
     {

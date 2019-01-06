@@ -40,6 +40,8 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     var puntos = 0
     
     var cartaVista:Bool = false
+    var statusViewWords:Bool = true
+    var divisor:CGFloat!
     
     //anuncios
     var interstitial: GADInterstitial!
@@ -56,8 +58,8 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         interstitial = GADInterstitial(adUnitID: "ca-app-pub-5222742314105921/4884834943")
         let request = GADRequest()
         interstitial.load(request)
-        
     }
+    
         //agregamos esto
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         setWordAndTranslateWithAnimation(view: card)
@@ -65,15 +67,22 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         //agregamos esto
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-        card.addGestureRecognizer(tap)
-        activateGesture.isEnabled = false
-        wordsForShow = wordsForLearn
-        wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
+        divisor = (view.frame.width/2) / 0.52
         
-        updateVaribles()
-        updateViews()
-        nextWord()
+        if statusViewWords {
+            self.resetCard()
+            viewPrin.alpha = 1.0
+            viewPrin.isHidden = false
+            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+            card.addGestureRecognizer(tap)
+            activateGesture.isEnabled = false
+            wordsForShow = wordsForLearn
+            wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
+        }
+        
+            updateVaribles()
+            updateViews()
+            nextWord()
         answertxt.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
     }
     //funcion para actualizar las variables a cero y los lbl despues de jugar
@@ -111,6 +120,7 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
             }
         }
         else {
+            self.statusViewWords = true
             performSegue(withIdentifier: "showScore2", sender: self)
         }
     }
@@ -269,14 +279,17 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     @IBAction func panGestureCard(_ sender: UIPanGestureRecognizer) {
         let card  = sender.view!
         let point = sender.translation(in: view)
-        card.center = CGPoint(x: view.center.x + point.x, y: (view.center.y-60) + point.y)
+        let xFromCenter = card.center.x - view.center.x
+        card.center = CGPoint(x: view.center.x + point.x, y: view.center.y-60)
         
+        card.transform = CGAffineTransform(rotationAngle: xFromCenter/divisor)
+        let sizeToView = view.frame.width/2
         if sender.state == UIGestureRecognizer.State.ended {
-            
-            if card.center.x < 75 {
+            if card.center.x < sizeToView {
                 //move off to the left side
                 UIView.animate(withDuration: 0.3) {
                     card.center = CGPoint(x: card.center.x - 200, y: card.center.y + 25)
+                    card.transform = CGAffineTransform(rotationAngle: (card.center.x - 150)/self.divisor)
                     card.alpha = 0
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
                         if(self.updateCard()){
@@ -285,10 +298,11 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
                     })
                 }
                 return
-            }else if card.center.x > (view.frame.width - 75) {
+            }else if card.center.x > (view.frame.width - sizeToView) {
                 //move off to the right side
                 UIView.animate(withDuration: 0.3) {
-                    card.center = CGPoint(x: card.center.x + 200, y: card.center.y + 25)
+                    card.center = CGPoint(x: card.center.x + 150, y: card.center.y + 25)
+                    card.transform = CGAffineTransform(rotationAngle: (card.center.x - 150)/self.divisor)
                     card.alpha = 0
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
                         if(self.updateCard()){
@@ -307,9 +321,11 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         UIView.animate(withDuration: 0.2) {
             self.card.center = CGPoint(x: self.view.center.x, y: self.view.center.y-60)
             self.card.alpha = 1
+            self.card.transform = CGAffineTransform.identity
         }
         
     }
+    
     //funcion para eliminar la palabra que ya vimos
     //activar la opcion de poder saltar a otra palabra
     func updateCard() -> Bool{
@@ -320,15 +336,12 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
             cartaVista = false
             return true
         }else{
-            if self.interstitial.isReady {
-                self.interstitial.present(fromRootViewController: self)
-            } else {
-                print("Ad wasn't ready")
-            }
+            showAnuncio()
             hiddenView(view: viewPrin)
             return false
         }
     }
+    
     //funcion para girar la carta
     func transitionLeft(view:UIView) {
         UIView.transition(with: view, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
@@ -341,11 +354,11 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     func setWordAndTranslateWithAnimation(view :UIView){
         if wordsForShow!.wordsArrayPhone.count > 0 {
             if cartaVista
-        {
+            {
             wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
             transitionRight(view: view)
             cartaVista = false
-        }else{
+            }else{
             wordShow.text = wordsForShow!.wordsArrayPhone.first!.translate
             transitionLeft(view: view)
             cartaVista = true
@@ -356,11 +369,21 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     //funcion para ocultar la vista y mostrar la vista de juego
     func hiddenView(view: UIView) {
         
-        UIView.animate(withDuration: 0.5, delay: 1.0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.3, delay: 1.0, options: .curveEaseOut, animations: {
             view.alpha = 0.0
         }, completion: { (true) in
             view.isHidden = true
+            self.statusViewWords = false
+            print("\(self.statusViewWords) 3")
             print("juego listo")
         })
     }
+    
+func showAnuncio(){
+    if self.interstitial.isReady {
+        self.interstitial.present(fromRootViewController: self)
+    } else {
+        print("Ad wasn't ready")
+    }
+}
 }
