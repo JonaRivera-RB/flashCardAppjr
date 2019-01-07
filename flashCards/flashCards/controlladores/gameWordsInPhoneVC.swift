@@ -27,9 +27,10 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var wordShow: UILabel!
     @IBOutlet var activateGesture: UIPanGestureRecognizer!
     
-    
+    var allWordsForLearn:WordsBankStruck?
     var wordsForLearn:WordsBankStruck?
     var wordsForShow:WordsBankStruck?
+    var wordsThatWereWrong = [WordsInPhone]()
     
     var numberWord:Int = 0
     var lado:Bool!
@@ -50,14 +51,8 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         answertxt.delegate = self
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
-        //anuncios
-        viewAnuncios.adUnitID = "ca-app-pub-5222742314105921/6585214830"
-        viewAnuncios.rootViewController = self
-        viewAnuncios.load(GADRequest())
-        
-        interstitial = GADInterstitial(adUnitID: "ca-app-pub-5222742314105921/4884834943")
-        let request = GADRequest()
-        interstitial.load(request)
+        loadAnuncios()
+        allWordsForLearn = wordsForLearn
     }
     
         //agregamos esto
@@ -66,24 +61,32 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         }
     
     override func viewWillAppear(_ animated: Bool) {
-        //agregamos esto
-        divisor = (view.frame.width/2) / 0.52
+        answertxt.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        card.addGestureRecognizer(tap)
+        
+        divisor = (view.frame.width/2) / 0.52
         if statusViewWords {
             self.resetCard()
-            viewPrin.alpha = 1.0
-            viewPrin.isHidden = false
-            let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-            card.addGestureRecognizer(tap)
-            activateGesture.isEnabled = false
+            self.activateTheViewToPractice()
+            
             wordsForShow = wordsForLearn
             wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+                self.convertTextToSpeech(forText: self.wordsForShow!.wordsArrayPhone.first!.word!)
+            })
         }
+        updateVaribles()
+        updateViews()
+        //nextWord()
         
-            updateVaribles()
-            updateViews()
-            nextWord()
-        answertxt.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: UIControl.Event.editingChanged)
+    }
+    //funcion para activar la vista y mostrarla para memorizar las palabras que tienes que aprenderte, y activar la interaccion con la vista
+    func activateTheViewToPractice() {
+        viewPrin.alpha = 1.0
+        viewPrin.isHidden = false
+        activateGesture.isEnabled = false
     }
     //funcion para actualizar las variables a cero y los lbl despues de jugar
     func updateVaribles(){
@@ -91,7 +94,6 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         correctAnswer = 0
         incorrectanswer = 0
         puntos = 0
-        wordLbl.text = ""
     }
     //por medio de esta funcion le decimos al txt que si el txt esta vacio el boton se ponga no disponible
     //pero si el usuario ya ingreso datos que se ponga disponible
@@ -112,6 +114,10 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         if numberWord < wordsForLearn!.wordsArrayPhone.count {
             switchOn = getProbability()
             
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+                self.convertTextToSpeech(forText: self.wordsForLearn!.wordsArrayPhone[self.numberWord].word!)
+            })
+            
             if switchOn == false {
                 wordLbl.text = wordsForLearn!.wordsArrayPhone[numberWord].word
             }
@@ -119,11 +125,32 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
                 wordLbl.text = wordsForLearn!.wordsArrayPhone[numberWord].translate
             }
         }
-        else {
+            
+        else if wordsThatWereWrong.isEmpty {
             self.statusViewWords = true
+            wordsForLearn = allWordsForLearn
+            wordsForShow = wordsForLearn
             performSegue(withIdentifier: "showScore2", sender: self)
         }
+        else {
+            wordsForShow!.wordsArrayPhone = wordsThatWereWrong
+            wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
+            wordsForLearn!.wordsArrayPhone = wordsThatWereWrong
+            wordsThatWereWrong.removeAll()
+            
+            self.resetCard()
+            self.activateTheViewToPractice()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+                self.convertTextToSpeech(forText: self.wordsForShow!.wordsArrayPhone.first!.word!)
+            })
+            
+            wordLbl.text = ""
+            numberWord = 0
+            updateViews()
+        }
     }
+    
     
     func getProbability() -> Bool{
         let randomInt = Int(arc4random_uniform(10) + 1)
@@ -216,6 +243,8 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
                 self.voiceBtn.isHidden = true
                 self.incorrectanswer += 1
                 print("incorrect")
+                wordsThatWereWrong.append(wordsForLearn!.wordsArrayPhone[numberWord])
+                
                 transitionRight()
                 wordLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 viewWord.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
@@ -237,7 +266,9 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     @IBAction func checkBtnWasPressed(_ sender: Any) {
         checkAnswer()
         numberWord += 1
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.wordLbl.text = ""
             self.updateLbl()
             self.updateViews()
             self.nextWord()
@@ -288,7 +319,7 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
             if card.center.x < sizeToView {
                 //move off to the left side
                 UIView.animate(withDuration: 0.3) {
-                    card.center = CGPoint(x: card.center.x - 200, y: card.center.y + 25)
+                    card.center = CGPoint(x: card.center.x - 150, y: card.center.y + 25)
                     card.transform = CGAffineTransform(rotationAngle: (card.center.x - 150)/self.divisor)
                     card.alpha = 0
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
@@ -333,15 +364,19 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         activateGesture.isEnabled = false
         if wordsForShow!.wordsArrayPhone.count > 0 {
             wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
+                self.convertTextToSpeech(forText: self.wordsForShow!.wordsArrayPhone.first!.word!)
+            })
             cartaVista = false
             return true
         }else{
             showAnuncio()
             hiddenView(view: viewPrin)
+            
             return false
         }
     }
-    
+    //22575 3152.97 11 enero 19
     //funcion para girar la carta
     func transitionLeft(view:UIView) {
         UIView.transition(with: view, duration: 0.3, options: .transitionFlipFromLeft, animations: nil, completion: nil)
@@ -369,21 +404,31 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     //funcion para ocultar la vista y mostrar la vista de juego
     func hiddenView(view: UIView) {
         
-        UIView.animate(withDuration: 0.3, delay: 1.0, options: .curveEaseOut, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0.5, options: .curveEaseOut, animations: {
             view.alpha = 0.0
         }, completion: { (true) in
             view.isHidden = true
             self.statusViewWords = false
-            print("\(self.statusViewWords) 3")
-            print("juego listo")
+            self.nextWord()
         })
     }
     
-func showAnuncio(){
-    if self.interstitial.isReady {
-        self.interstitial.present(fromRootViewController: self)
-    } else {
-        print("Ad wasn't ready")
+    func showAnuncio(){
+        if self.interstitial.isReady {
+            self.interstitial.present(fromRootViewController: self)
+        } else {
+            print("Ad wasn't ready")
+        }
     }
-}
+    
+    func loadAnuncios(){
+        //anuncios
+        viewAnuncios.adUnitID = "ca-app-pub-5222742314105921/6585214830"
+        viewAnuncios.rootViewController = self
+        viewAnuncios.load(GADRequest())
+        
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-5222742314105921/4884834943")
+        let request = GADRequest()
+        interstitial.load(request)
+    }
 }

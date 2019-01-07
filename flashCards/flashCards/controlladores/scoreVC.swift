@@ -160,7 +160,7 @@ class scoreVC: UIViewController {
             
             print("mis puntos sexto filtro \(self.myPts)")
            calculateNextLevelPts()
-            level.text = String("New level \(mylevel)")
+            level.text = String("Nuevo nivel \(mylevel)")
         }
         if startValue > myPts {
             startValue = myPts
