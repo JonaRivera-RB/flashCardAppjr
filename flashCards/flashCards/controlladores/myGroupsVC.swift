@@ -216,9 +216,8 @@ extension myGroupsVC : UITableViewDelegate, UITableViewDataSource {
         }
        
         
-        else if let myPlayVC = segue.destination as? myGameVC {
-            myPlayVC.selectedGroup2 = selectedGroup
-            myPlayVC.wordsForLearn = wordsForLearn
+        else if let myPlayVC = segue.destination as? gameWordsInPhoneVC {
+            myPlayVC.initWords(myWords: wordsForLearn, groupSelected: selectedGroup)
         }
     }
     @IBAction func playBtnWasPressed(_ button: UIButton) {
@@ -252,6 +251,7 @@ extension myGroupsVC {
                        // self.getWordsRandom()
                     }
                     print("jugar!")
+                    //showPlay
                    performSegue(withIdentifier: "showPlay", sender: self)
                 } else {
                     let appearance = SCLAlertView.SCLAppearance(

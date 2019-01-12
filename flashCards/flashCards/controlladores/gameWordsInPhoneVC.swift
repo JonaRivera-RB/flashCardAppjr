@@ -28,9 +28,10 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     @IBOutlet var activateGesture: UIPanGestureRecognizer!
     
     var allWordsForLearn:WordsBankStruck?
-    var wordsForLearn:WordsBankStruck?
+    var wordsForLearn:WordsBankStruck!
     var wordsForShow:WordsBankStruck?
     var wordsThatWereWrong = [WordsInPhone]()
+    
     
     var numberWord:Int = 0
     var lado:Bool!
@@ -55,6 +56,34 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         allWordsForLearn = wordsForLearn
     }
     
+    func initWords(myWords:[Words] , groupSelected:Groups){
+        var nameOfGrup = groupSelected.group
+        var myWordsForLearn = [WordsInPhone]()
+        var myGroupSelected:WordsBankStruck!
+        
+        for w in 0...myWords.count-1 {
+            let word:String = myWords[w].word!
+            let translate:String = myWords[w].translate!
+            myWordsForLearn.append(WordsInPhone(word: word, translate: translate))
+        }
+        myGroupSelected = WordsBankStruck(section: nameOfGrup, wordsArrayPhone: myWordsForLearn)
+        wordsForLearn = myGroupSelected
+        /*
+         
+         var myWordsStruck = [WordsInPhone]()
+         var selectedGroup:WordsBankStruck!
+         
+         for w in 0...wordsForLearn.count-1 {
+         let word:String = wordsForLearn[w].word!
+         let traslateString = wordsForLearn[w].translate!
+         myWordsStruck.append(WordsInPhone(word: word, translate: traslateString))
+         print(myWordsStruck[w].word!)
+         }
+         selectedGroup = WordsBankStruck(section: "Ejemplo", wordsArrayPhone: myWordsStruck)
+         myPlayVC.wordsForLearn = selectedGroup
+         
+         */
+    }
         //agregamos esto
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         setWordAndTranslateWithAnimation(view: card)
@@ -70,7 +99,7 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         if statusViewWords {
             self.resetCard()
             self.activateTheViewToPractice()
-            
+            print("tercero words\(wordsForLearn?.wordsArrayPhone.count)")
             wordsForShow = wordsForLearn
             wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
@@ -144,7 +173,7 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
                 self.convertTextToSpeech(forText: self.wordsForShow!.wordsArrayPhone.first!.word!)
             })
-            
+            self.view.endEditing(true)
             wordLbl.text = ""
             numberWord = 0
             updateViews()
@@ -211,7 +240,6 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     //cambiamos valor de lado
     func checkAnswer() {
         var correctAnswer = ""
-        
         if switchOn == false {
             correctAnswer = wordsForLearn!.wordsArrayPhone[numberWord].translate!
         }
@@ -264,12 +292,14 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     //le damos color al texto y fondo
     //si el lado es true lo giramos a la derecha y si no a al izquierda
     @IBAction func checkBtnWasPressed(_ sender: Any) {
+        
         checkAnswer()
         numberWord += 1
+        self.updateLbl()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             self.wordLbl.text = ""
-            self.updateLbl()
+           // self.updateLbl()
             self.updateViews()
             self.nextWord()
             self.wordLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -283,6 +313,7 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         }
     }
     @IBAction func skipBtnWasPressed(_ sender: Any) {
+        wordsThatWereWrong.append(wordsForLearn!.wordsArrayPhone[numberWord])
         skipWord += 1
         numberWord += 1
         if puntos > 0 {

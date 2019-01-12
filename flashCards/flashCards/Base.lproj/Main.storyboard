@@ -628,10 +628,10 @@
             </objects>
             <point key="canvasLocation" x="2679" y="-1561"/>
         </scene>
-        <!--Mi biblioteca-->
+        <!--showPlay-->
         <scene sceneID="RxY-GF-RMX">
             <objects>
-                <viewController storyboardIdentifier="pag2" id="w50-bk-yms" customClass="myGroupsVC" customModule="flashCards" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="pag2" title="showPlay" id="w50-bk-yms" customClass="myGroupsVC" customModule="flashCards" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZC9-il-4Bh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -775,7 +775,7 @@
                     <connections>
                         <outlet property="grupuTableView" destination="G4r-xc-INp" id="hN8-BR-18j"/>
                         <segue destination="uBQ-XV-82n" kind="show" identifier="showWords" id="0Ub-so-cce"/>
-                        <segue destination="kdz-SF-i9z" kind="show" identifier="showPlay" id="ZAb-BL-QGX"/>
+                        <segue destination="Qwg-iE-wCB" kind="show" identifier="showPlay" id="6f2-aP-cyY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8i1-Qn-EBO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2000,6 +2000,7 @@
         <image name="layers" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="6f2-aP-cyY"/>
         <segue reference="LXY-PQ-sWB"/>
     </inferredMetricsTieBreakers>
 </document>
