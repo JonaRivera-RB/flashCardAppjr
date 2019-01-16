@@ -108,7 +108,7 @@ extension myWordsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let learnedWord = UITableViewRowAction(style: .normal, title: "LEARNED") { (rowAction, indexPath) in
-            //marcar omo aprendida
+            self.setProgress(atIndexPath: indexPath)
             tableView.reloadData()
         }
         learnedWord.backgroundColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
@@ -173,4 +173,24 @@ extension myWordsVC {
             completion(false)
         }
     }
+        //funcion para editar el progreso
+        func setProgress(atIndexPath indexPath: IndexPath) {
+            guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+            
+            let chosenGoal = words[indexPath.row]
+            
+            if chosenGoal.goal < 1 {
+                chosenGoal.goal = 1
+            }else if chosenGoal.goal == 1{
+                chosenGoal.goal = 0
+            }else {
+                return
+            }
+            
+            do {
+                try managedContext.save()
+            } catch  {
+                debugPrint("Could not set progress:\(error.localizedDescription)")
+            }
+        }
 }

@@ -1106,48 +1106,6 @@
                                             <constraint firstItem="CpD-Hr-MrE" firstAttribute="height" secondItem="5lK-qf-MpD" secondAttribute="height" id="kb0-sd-FDh"/>
                                         </constraints>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="b37-1U-94G">
-                                        <rect key="frame" x="0.0" y="191.33333333333331" width="300" height="91.666666666666686"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cuantas veces quieres practicarla?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bR-nJ-CDa">
-                                                <rect key="frame" x="46" y="0.0" width="208" height="23.333333333333332"/>
-                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="I0U-cG-xbE">
-                                                <rect key="frame" x="101.66666666666669" y="23.333333333333371" width="96.333333333333314" height="68.333333333333329"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jtT-Bs-Ow8">
-                                                        <rect key="frame" x="0.0" y="0.66666666666662877" width="30" height="67"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="40"/>
-                                                        <state key="normal" title="&lt;">
-                                                            <color key="titleColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="moreLessBtnWasPressed:" destination="5Qn-Bx-QA0" eventType="touchUpInside" id="AJd-Qx-H0z"/>
-                                                        </connections>
-                                                    </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uwt-en-UBC">
-                                                        <rect key="frame" x="35" y="0.0" width="26.333333333333329" height="68.333333333333329"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Bold" family="Avenir Next Condensed" pointSize="50"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uH1-Ez-eka">
-                                                        <rect key="frame" x="66.333333333333314" y="0.66666666666662877" width="30" height="67"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="40"/>
-                                                        <state key="normal" title="&gt;">
-                                                            <color key="titleColor" red="0.17254901959999999" green="0.24313725489999999" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="moreLessBtnWasPressed:" destination="5Qn-Bx-QA0" eventType="touchUpInside" id="xth-S8-5bt"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                    </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bia-m6-Njv" customClass="vistaBoton" customModule="flashCards" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="480" width="300" height="50"/>
                                         <color key="backgroundColor" red="0.94509803920000002" green="0.76862745099999996" blue="0.058823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1167,12 +1125,9 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Bia-m6-Njv" secondAttribute="trailing" id="3JR-AU-Lk1"/>
                                     <constraint firstItem="hgq-VX-y1L" firstAttribute="top" secondItem="1VG-mI-1Ze" secondAttribute="top" constant="20" id="BEA-i2-PuU"/>
-                                    <constraint firstItem="b37-1U-94G" firstAttribute="width" secondItem="1VG-mI-1Ze" secondAttribute="width" id="E6Y-sZ-99P"/>
                                     <constraint firstAttribute="bottom" secondItem="Bia-m6-Njv" secondAttribute="bottom" id="KYE-D0-mqz"/>
                                     <constraint firstItem="H89-HT-18P" firstAttribute="top" secondItem="hgq-VX-y1L" secondAttribute="bottom" constant="20" id="Q12-xY-BOS"/>
-                                    <constraint firstItem="b37-1U-94G" firstAttribute="top" secondItem="H89-HT-18P" secondAttribute="bottom" constant="10" id="ZS7-za-Atw"/>
                                     <constraint firstItem="H89-HT-18P" firstAttribute="centerX" secondItem="1VG-mI-1Ze" secondAttribute="centerX" id="aSz-vB-WBV"/>
-                                    <constraint firstItem="b37-1U-94G" firstAttribute="centerX" secondItem="1VG-mI-1Ze" secondAttribute="centerX" id="ihk-Tf-1Pc"/>
                                     <constraint firstItem="Bia-m6-Njv" firstAttribute="leading" secondItem="1VG-mI-1Ze" secondAttribute="leading" id="jeW-oG-Oef"/>
                                     <constraint firstItem="hgq-VX-y1L" firstAttribute="centerX" secondItem="1VG-mI-1Ze" secondAttribute="centerX" id="k6t-ww-CeE"/>
                                     <constraint firstItem="hgq-VX-y1L" firstAttribute="width" secondItem="1VG-mI-1Ze" secondAttribute="width" multiplier="80%" id="lye-fk-cbw"/>
@@ -1219,11 +1174,8 @@
                     </view>
                     <connections>
                         <outlet property="bannerView" destination="M2t-0D-sKD" id="CgC-to-GDV"/>
-                        <outlet property="goalLbl" destination="Uwt-en-UBC" id="Fe8-dK-Zgl"/>
                         <outlet property="traduccionTxt" destination="CpD-Hr-MrE" id="29Q-bt-zFU"/>
                         <outlet property="wordTxt" destination="rSh-Fw-whc" id="u4R-hj-pgB"/>
-                        <outletCollection property="moreLessbtn" destination="jtT-Bs-Ow8" collectionClass="NSMutableArray" id="dXx-T6-wOw"/>
-                        <outletCollection property="moreLessbtn" destination="uH1-Ez-eka" collectionClass="NSMutableArray" id="yJH-gM-Ojv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zhD-em-we9" userLabel="First Responder" sceneMemberID="firstResponder"/>

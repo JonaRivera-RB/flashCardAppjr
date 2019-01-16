@@ -17,7 +17,7 @@ class WordCell: UITableViewCell {
         self.wordDescriptionLbl.text = word.word
         self.wordTranslateLbl.text = word.translate
         
-        if word.goal == word.goalCompletion {
+        if word.goal == 1 {
             self.viewLearned.isHidden = false
         } else {
             self.viewLearned.isHidden = true

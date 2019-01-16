@@ -14,9 +14,7 @@ class addwordVC: UIViewController {
     
     @IBOutlet weak var wordTxt: UITextField!
     @IBOutlet weak var traduccionTxt: UITextField!
-    @IBOutlet var moreLessbtn: [UIButton]!
-    @IBOutlet weak var goalLbl: UILabel!
-    var goal = 5
+    
     var grupoSeleccionado:Groups!
     
     //anuncios
@@ -34,13 +32,10 @@ class addwordVC: UIViewController {
         let request = GADRequest()
         interstitial.load(request)
         
-        
-        goalLbl.text = String(goal)
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     
     //Descomentar, si el tap no debe interferir o cancelar otras acciones
     //tap.cancelsTouchesInView = false
-    
     view.addGestureRecognizer(tap)
 }
 
@@ -72,18 +67,7 @@ class addwordVC: UIViewController {
     @IBAction func backBtnWasPressed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    @IBAction func moreLessBtnWasPressed(_ sender: UIButton) {
-        if sender.tag == 0 {
-            if goal != 5 {
-                goal -= 1
-                goalLbl.text = String(goal)
-            }
-        }
-        else {
-            goal += 1
-            goalLbl.text = String(goal)
-        }
-        }
+    
     func save(completion: (_ finished:Bool) -> ()) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
         let word = Words(context: managedContext)
@@ -91,7 +75,7 @@ class addwordVC: UIViewController {
         word.word = wordTxt.text
         word.translate = traduccionTxt.text
         word.goal = Int32(0)
-        word.goalCompletion = Int32(goalLbl.text!)!
+        
         word.wordsRelation = grupoSeleccionado
         do {
             try managedContext.save()
@@ -102,12 +86,4 @@ class addwordVC: UIViewController {
             completion(false)
         }
     }
-    
-    
-    
-    
-    
-    
-    
-    
     }

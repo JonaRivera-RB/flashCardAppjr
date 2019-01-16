@@ -243,7 +243,7 @@ extension myGroupsVC {
         self.loadDataCoreDataGroup { (completion) in
             if completion {
                 for word in words {
-                    if word.goal != word.goalCompletion {
+                    if word.goal != 1 {
                         wordForLearn += 1
                         wordsForLearn.append(word)
                     }

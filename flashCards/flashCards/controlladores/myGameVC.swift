@@ -290,8 +290,8 @@ extension myGameVC {
         
         let chosenGoal = wordsForLearn[number]
         
-        if chosenGoal.goal < chosenGoal.goalCompletion {
-            chosenGoal.goal = chosenGoal.goal + 1
+        if chosenGoal.goal < 1 {
+            chosenGoal.goal = 1
         } else {
             return
         }
