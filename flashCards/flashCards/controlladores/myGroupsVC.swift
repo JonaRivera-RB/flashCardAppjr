@@ -193,6 +193,7 @@ extension myGroupsVC : UITableViewDelegate, UITableViewDataSource {
         return .none
     }
     //creamos la opcion para poder eliminar el grupo y le pasamos como referencia la celda que queremos eliminar
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (rowAction, indexPath) in
             self.removeGroup(atIndexPath: indexPath)
@@ -200,6 +201,7 @@ extension myGroupsVC : UITableViewDelegate, UITableViewDataSource {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
+        
         return[deleteAction]
     }
     //creamos codigo para poder entrar a la siguiente vista y me muestre lo que necesito ver

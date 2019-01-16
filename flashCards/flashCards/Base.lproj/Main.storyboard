@@ -811,23 +811,17 @@
                                                     <rect key="frame" x="45" y="31" width="285" height="248"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="XLb-QL-ldI">
-                                                            <rect key="frame" x="30" y="59" width="225" height="130"/>
+                                                            <rect key="frame" x="30" y="76.333333333333314" width="225" height="95.666666666666686"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ejemplo1 " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="3J3-A4-WtU">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ejemplo1 " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="3J3-A4-WtU">
                                                                     <rect key="frame" x="31.333333333333329" y="0.0" width="162.33333333333337" height="54.666666666666664"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNextCondensed-Bold" family="Avenir Next Condensed" pointSize="40"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ejemplo 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjB-nv-ktH">
-                                                                    <rect key="frame" x="57.666666666666657" y="54.666666666666657" width="110" height="41"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ejemplo 2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjB-nv-ktH">
+                                                                    <rect key="frame" x="57.666666666666657" y="54.666666666666671" width="110" height="41"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="30"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fCg-vb-qeR">
-                                                                    <rect key="frame" x="106.33333333333334" y="95.666666666666657" width="12.666666666666671" height="34.333333333333343"/>
-                                                                    <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="25"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -877,7 +871,6 @@
                                         <connections>
                                             <outlet property="viewLearned" destination="KtC-XX-LvS" id="8Sc-4a-jg9"/>
                                             <outlet property="wordDescriptionLbl" destination="3J3-A4-WtU" id="dfj-ac-i2L"/>
-                                            <outlet property="wordProgressLbl" destination="fCg-vb-qeR" id="wEq-ZA-tXE"/>
                                             <outlet property="wordTranslateLbl" destination="fjB-nv-ktH" id="cl0-3W-Lxa"/>
                                         </connections>
                                     </tableViewCell>

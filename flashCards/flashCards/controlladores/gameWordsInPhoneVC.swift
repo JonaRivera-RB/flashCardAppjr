@@ -57,7 +57,7 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
     }
     
     func initWords(myWords:[Words] , groupSelected:Groups){
-        var nameOfGrup = groupSelected.group
+        let nameOfGrup = groupSelected.group
         var myWordsForLearn = [WordsInPhone]()
         var myGroupSelected:WordsBankStruck!
         

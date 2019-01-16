@@ -105,14 +105,21 @@ extension myWordsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let learnedWord = UITableViewRowAction(style: .normal, title: "LEARNED") { (rowAction, indexPath) in
+            //marcar omo aprendida
+            tableView.reloadData()
+        }
+        learnedWord.backgroundColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
+        
         let deleteAction = UITableViewRowAction(style: .destructive, title: "ELIMINAR") { (rowAction, indexPath) in
             self.removeWord(atIndexPath: indexPath)
             self.fetchCoreDataObjects()
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.1490196078, blue: 0, alpha: 1)
-        return[deleteAction]
+        return[deleteAction,learnedWord]
     }
 }
 extension myWordsVC {

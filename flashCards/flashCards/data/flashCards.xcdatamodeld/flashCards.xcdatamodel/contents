@@ -31,9 +31,9 @@
     </entity>
     <elements>
         <element name="Groups" positionX="-239.4296875" positionY="-105.703125" width="128" height="88"/>
-        <element name="Words" positionX="-2.3203125" positionY="-136.2421875" width="128" height="118"/>
-        <element name="Sections" positionX="-438.7109375" positionY="-289.94140625" width="128" height="73"/>
         <element name="GroupsSections" positionX="-243.0078125" positionY="-285.01171875" width="128" height="103"/>
+        <element name="Sections" positionX="-438.7109375" positionY="-289.94140625" width="128" height="73"/>
+        <element name="Words" positionX="-2.3203125" positionY="-136.2421875" width="128" height="118"/>
         <element name="WordsSections" positionX="17.33203125" positionY="-286.4296875" width="128" height="118"/>
     </elements>
 </model>
