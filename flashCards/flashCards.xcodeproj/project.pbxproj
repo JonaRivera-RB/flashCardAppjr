@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		131423DE21137EDE00A041CE /* myGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131423DD21137EDE00A041CE /* myGameVC.swift */; };
 		1317504421DDC1D500659C31 /* UITableView+indexPathForView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1317504321DDC1D500659C31 /* UITableView+indexPathForView.swift */; };
 		133D8734214F4DD200728394 /* statisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133D8733214F4DD200728394 /* statisticsVC.swift */; };
 		134A737121310F8C008629E5 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A737021310F8C008629E5 /* extensions.swift */; };
 		134A737521311538008629E5 /* groupsColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A737421311538008629E5 /* groupsColor.swift */; };
-		13630D5E21C9525C009F9DB1 /* gameWordsInPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13630D5D21C9525C009F9DB1 /* gameWordsInPhoneVC.swift */; };
+		13630D5E21C9525C009F9DB1 /* gameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13630D5D21C9525C009F9DB1 /* gameVC.swift */; };
 		13630D6021C96A77009F9DB1 /* IndexSectionAndStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13630D5F21C96A77009F9DB1 /* IndexSectionAndStatus.swift */; };
 		13814B2221C5B597004C4BA8 /* WordsLoadInTheAppVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13814B2121C5B597004C4BA8 /* WordsLoadInTheAppVC.swift */; };
 		13814B2421C5B9A7004C4BA8 /* WordInTheAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13814B2321C5B9A7004C4BA8 /* WordInTheAppCell.swift */; };
@@ -30,7 +29,6 @@
 		13BAF97C2125A8EE00ED7A8E /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAF97B2125A8EE00ED7A8E /* GroupCell.swift */; };
 		13E58328218D3CE000D5275E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13E58327218D3CDF00D5275E /* Assets.xcassets */; };
 		13F196ED210A3DEE0033EF05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F196EC210A3DEE0033EF05 /* AppDelegate.swift */; };
-		13F196EF210A3DEE0033EF05 /* mainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F196EE210A3DEE0033EF05 /* mainController.swift */; };
 		13F196F2210A3DEE0033EF05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F196F0210A3DEE0033EF05 /* Main.storyboard */; };
 		13F196F5210A3DEE0033EF05 /* flashCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 13F196F3210A3DEE0033EF05 /* flashCards.xcdatamodeld */; };
 		13F196FA210A3DEF0033EF05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13F196F8210A3DEF0033EF05 /* LaunchScreen.storyboard */; };
@@ -45,12 +43,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		131423DD21137EDE00A041CE /* myGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myGameVC.swift; sourceTree = "<group>"; };
 		1317504321DDC1D500659C31 /* UITableView+indexPathForView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+indexPathForView.swift"; sourceTree = "<group>"; };
 		133D8733214F4DD200728394 /* statisticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticsVC.swift; sourceTree = "<group>"; };
 		134A737021310F8C008629E5 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		134A737421311538008629E5 /* groupsColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groupsColor.swift; sourceTree = "<group>"; };
-		13630D5D21C9525C009F9DB1 /* gameWordsInPhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameWordsInPhoneVC.swift; sourceTree = "<group>"; };
+		13630D5D21C9525C009F9DB1 /* gameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameVC.swift; sourceTree = "<group>"; };
 		13630D5F21C96A77009F9DB1 /* IndexSectionAndStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexSectionAndStatus.swift; sourceTree = "<group>"; };
 		13814B2121C5B597004C4BA8 /* WordsLoadInTheAppVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsLoadInTheAppVC.swift; sourceTree = "<group>"; };
 		13814B2321C5B9A7004C4BA8 /* WordInTheAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordInTheAppCell.swift; sourceTree = "<group>"; };
@@ -69,7 +66,6 @@
 		13E58327218D3CDF00D5275E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13F196E9210A3DED0033EF05 /* flashCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flashCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F196EC210A3DEE0033EF05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		13F196EE210A3DEE0033EF05 /* mainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainController.swift; sourceTree = "<group>"; };
 		13F196F1210A3DEE0033EF05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		13F196F4210A3DEE0033EF05 /* flashCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = flashCards.xcdatamodel; sourceTree = "<group>"; };
 		13F196F9210A3DEF0033EF05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -172,17 +168,15 @@
 		13F19701210A4AA00033EF05 /* controlladores */ = {
 			isa = PBXGroup;
 			children = (
-				13F196EE210A3DEE0033EF05 /* mainController.swift */,
 				13F19709210A8A150033EF05 /* myWordsVC.swift */,
 				13AEA997211006B50048696F /* addwordVC.swift */,
-				131423DD21137EDE00A041CE /* myGameVC.swift */,
 				13F7E61121253DD200C68CA6 /* myGroupsVC.swift */,
 				138234EF21475EBF00D5EACE /* scoreVC.swift */,
 				133D8733214F4DD200728394 /* statisticsVC.swift */,
 				13FE4455218F8F1B00810BB6 /* AboutViewController.swift */,
 				1392837721BE137500FF8BCB /* categoriesInTheAppVC.swift */,
 				13814B2121C5B597004C4BA8 /* WordsLoadInTheAppVC.swift */,
-				13630D5D21C9525C009F9DB1 /* gameWordsInPhoneVC.swift */,
+				13630D5D21C9525C009F9DB1 /* gameVC.swift */,
 			);
 			path = controlladores;
 			sourceTree = "<group>";
@@ -340,15 +334,13 @@
 				133D8734214F4DD200728394 /* statisticsVC.swift in Sources */,
 				13AEA998211006B50048696F /* addwordVC.swift in Sources */,
 				13F7E61221253DD200C68CA6 /* myGroupsVC.swift in Sources */,
-				13F196EF210A3DEE0033EF05 /* mainController.swift in Sources */,
 				13A382BC21B48CC500FDA319 /* VistaCard.swift in Sources */,
 				13814B2421C5B9A7004C4BA8 /* WordInTheAppCell.swift in Sources */,
 				13F196F5210A3DEE0033EF05 /* flashCards.xcdatamodeld in Sources */,
-				131423DE21137EDE00A041CE /* myGameVC.swift in Sources */,
 				1317504421DDC1D500659C31 /* UITableView+indexPathForView.swift in Sources */,
 				13814B2821C76F5B004C4BA8 /* IndexAndStatus.swift in Sources */,
 				1392837621BE11DE00FF8BCB /* GroupInTheAppCell.swift in Sources */,
-				13630D5E21C9525C009F9DB1 /* gameWordsInPhoneVC.swift in Sources */,
+				13630D5E21C9525C009F9DB1 /* gameVC.swift in Sources */,
 				13F19706210A4C630033EF05 /* vistaBoton.swift in Sources */,
 				13BAF97C2125A8EE00ED7A8E /* GroupCell.swift in Sources */,
 				13FE4456218F8F1B00810BB6 /* AboutViewController.swift in Sources */,

@@ -95,7 +95,7 @@ extension categoriesInTheAppVC : UITableViewDelegate, UITableViewDataSource {
                 wordsVC.selectedGroup2 = allMyWords.bank[indexPath.section].bankoWords![indexPath.row]
             }
         }
-        else if let playInPhoneVC = segue.destination as? gameWordsInPhoneVC {
+        else if let playInPhoneVC = segue.destination as? gameVC {
                 playInPhoneVC.wordsForLearn = selectedGroup
             
         }

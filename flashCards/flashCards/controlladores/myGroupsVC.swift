@@ -218,7 +218,7 @@ extension myGroupsVC : UITableViewDelegate, UITableViewDataSource {
         }
        
         
-        else if let myPlayVC = segue.destination as? gameWordsInPhoneVC {
+        else if let myPlayVC = segue.destination as? gameVC {
             myPlayVC.initWords(myWords: wordsForLearn, groupSelected: selectedGroup)
         }
     }

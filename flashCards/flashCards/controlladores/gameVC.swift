@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import GoogleMobileAds
 
-class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
+class gameVC: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var wordLbl: UILabel!
     @IBOutlet weak var answertxt: UITextField!
@@ -99,7 +99,7 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         if statusViewWords {
             self.resetCard()
             self.activateTheViewToPractice()
-            print("tercero words\(wordsForLearn?.wordsArrayPhone.count)")
+            print("tercero words\(String(describing: wordsForLearn?.wordsArrayPhone.count))")
             wordsForShow = wordsForLearn
             wordShow.text = wordsForShow!.wordsArrayPhone.first!.word
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: {
@@ -207,7 +207,6 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
      //funcion para actualizar vistas, txt y botones cuando se pasa a la siguiente palabra
     func updateLbl() {
         answertxt.text = ""
-        correctAnswerTxt.isHidden = true
         checkAnswerBtn.isEnabled = false
         checkAnswerBtn.alpha = 0.5
     }
@@ -279,6 +278,7 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
                 correctAnswerTxt.isHidden = false
                 wordLbl.text = "incorrecto😞!"
                 correctAnswerTxt.text = correctAnswer
+                print("correct answer: \(correctAnswer)")
                 lado = false
             }
         }
@@ -299,6 +299,7 @@ class gameWordsInPhoneVC: UIViewController,UITextFieldDelegate {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
             self.wordLbl.text = ""
+            self.correctAnswerTxt.isHidden = true
            // self.updateLbl()
             self.updateViews()
             self.nextWord()

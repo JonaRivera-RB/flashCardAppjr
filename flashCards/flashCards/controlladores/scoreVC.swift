@@ -214,7 +214,7 @@ extension scoreVC {
         self.loadDataCoreData { (completion) in
             if completion {
                 for number in totalWords  {
-                    if number.goal == number.goalCompletion {
+                    if number.goal == 1 {
                         learned += 1
                     }
                 }
