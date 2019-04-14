@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SCLAlertView
 
 //improtante crear esto para poder utilizar core data
 let appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -55,7 +56,11 @@ class myWordsVC: UIViewController {
     }
     
     @IBAction func addWordBtnWasPressed(_ sender: Any) {
-        performSegue(withIdentifier: "addWord", sender: self)
+        if words.count < 15 {
+            performSegue(withIdentifier: "addWord", sender: self)
+        }else{
+            SCLAlertView().showWarning("Ups", subTitle: "El numero maximo de palabras por categorias por el momento es de 15 🤯")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -107,7 +112,7 @@ extension myWordsVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let learnedWord = UITableViewRowAction(style: .normal, title: "LEARNED") { (rowAction, indexPath) in
+        let learnedWord = UITableViewRowAction(style: .normal, title: "APRENDIDA") { (rowAction, indexPath) in
             self.setProgress(atIndexPath: indexPath)
             tableView.reloadData()
         }

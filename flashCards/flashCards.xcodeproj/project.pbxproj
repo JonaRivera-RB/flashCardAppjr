@@ -36,6 +36,7 @@
 		13F19706210A4C630033EF05 /* vistaBoton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F19705210A4C630033EF05 /* vistaBoton.swift */; };
 		13F19708210A4FB20033EF05 /* vistaBotones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F19707210A4FB20033EF05 /* vistaBotones.swift */; };
 		13F1970A210A8A150033EF05 /* myWordsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F19709210A8A150033EF05 /* myWordsVC.swift */; };
+		13F40C3B22639D9600D48BD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 13F40C3A22639D9600D48BD6 /* GoogleService-Info.plist */; };
 		13F7E61221253DD200C68CA6 /* myGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F7E61121253DD200C68CA6 /* myGroupsVC.swift */; };
 		13FE4456218F8F1B00810BB6 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FE4455218F8F1B00810BB6 /* AboutViewController.swift */; };
 		13FE4458218FFA9600810BB6 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FE4457218FFA9600810BB6 /* GoogleMobileAds.framework */; };
@@ -74,6 +75,7 @@
 		13F19705210A4C630033EF05 /* vistaBoton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vistaBoton.swift; sourceTree = "<group>"; };
 		13F19707210A4FB20033EF05 /* vistaBotones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = vistaBotones.swift; sourceTree = "<group>"; };
 		13F19709210A8A150033EF05 /* myWordsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myWordsVC.swift; sourceTree = "<group>"; };
+		13F40C3A22639D9600D48BD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		13F7E61121253DD200C68CA6 /* myGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myGroupsVC.swift; sourceTree = "<group>"; };
 		13FE4455218F8F1B00810BB6 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		13FE4457218FFA9600810BB6 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
@@ -149,8 +151,8 @@
 		13F196EB210A3DED0033EF05 /* flashCards */ = {
 			isa = PBXGroup;
 			children = (
-				1392837A21BE2F8C00FF8BCB /* Models */,
 				13FE4457218FFA9600810BB6 /* GoogleMobileAds.framework */,
+				1392837A21BE2F8C00FF8BCB /* Models */,
 				13BB3A3121310F2A00E60CF9 /* data */,
 				13BA8EC4210EA82B00FBEAF5 /* views */,
 				13F19702210A4AAB0033EF05 /* design */,
@@ -161,6 +163,7 @@
 				13F196F0210A3DEE0033EF05 /* Main.storyboard */,
 				13F196F8210A3DEF0033EF05 /* LaunchScreen.storyboard */,
 				13F196FB210A3DEF0033EF05 /* Info.plist */,
+				13F40C3A22639D9600D48BD6 /* GoogleService-Info.plist */,
 			);
 			path = flashCards;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13F196FA210A3DEF0033EF05 /* LaunchScreen.storyboard in Resources */,
+				13F40C3B22639D9600D48BD6 /* GoogleService-Info.plist in Resources */,
 				13E58328218D3CE000D5275E /* Assets.xcassets in Resources */,
 				13F196F2210A3DEE0033EF05 /* Main.storyboard in Resources */,
 			);

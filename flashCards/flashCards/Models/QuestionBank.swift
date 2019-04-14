@@ -42,6 +42,11 @@ class QuestionBank {
     private var school2:WordsBankStruck!
     private var school3:WordsBankStruck!
     
+    private var adverbsOfTime:WordsBankStruck!
+    private var adverbsOfFrequency:WordsBankStruck!
+    private var adverbsOfPlace:WordsBankStruck!
+    private var adverbsOfManner:WordsBankStruck!
+    private var adverbsOfQuantity:WordsBankStruck!
     
     
     var bank = [SectionBank]()
@@ -440,7 +445,90 @@ class QuestionBank {
                                                                                   WordsInPhone(word: "physics", translate: "física"),
                                                                                   WordsInPhone(word: "physical education", translate: "educación física"),
                                                                                   WordsInPhone(word: "information technology", translate: "informática")])
-
+        
+        //adverbs
+        adverbsOfTime = WordsBankStruck(section: "Adverbios de tiempo", wordsArrayPhone: [WordsInPhone(word: "first", translate: "primero"),
+                                                                                          WordsInPhone(word: "daily", translate: "diariamente"),
+                                                                                          WordsInPhone(word: "nightly", translate: "cada noche"),
+                                                                                          WordsInPhone(word: "weekly", translate: "semanalmente"),
+                                                                                          WordsInPhone(word: "monthly", translate: "mensualmente"),
+                                                                                          WordsInPhone(word: "annually", translate: "anualmente"),
+                                                                                          WordsInPhone(word: "yearly", translate: "cada año"),
+                                                                                          WordsInPhone(word: "before", translate: "antes"),
+                                                                                          WordsInPhone(word: "already", translate: "ya"),
+                                                                                          WordsInPhone(word: "now", translate: "ahora"),
+                                                                                          WordsInPhone(word: "soon", translate: "pronto"),
+                                                                                          WordsInPhone(word: "just", translate: "sólo"),
+                                                                                          WordsInPhone(word: "late", translate: "tarde"),
+                                                                                          WordsInPhone(word: "tonight", translate: "esta noche"),
+                                                                                          WordsInPhone(word: "tomorrow", translate: "mañana")])
+        
+        adverbsOfFrequency = WordsBankStruck(section: "Adverbios de frecuencia", wordsArrayPhone: [ WordsInPhone(word: "always", translate: "siempre"),
+                                                                                                    WordsInPhone(word: "daily", translate: "diariamente"),
+                                                                                                    WordsInPhone(word: "eventually", translate: "eventualmente"),
+                                                                                                    WordsInPhone(word: "frequently", translate: "frecuentemente"),
+                                                                                                    WordsInPhone(word: "generally", translate: "generalmente"),
+                                                                                                    WordsInPhone(word: "hardly ever", translate: "casi nunca"),
+                                                                                                    WordsInPhone(word: "infrequently", translate: "con poca frecuencia"),
+                                                                                                    WordsInPhone(word: "never", translate: "nunca"),
+                                                                                                    WordsInPhone(word: "normally", translate: "normalmente"),
+                                                                                                    WordsInPhone(word: "occasionally", translate: "ocasionalmente"),
+                                                                                                    WordsInPhone(word: "often", translate: "con frecuencia"),
+                                                                                                    WordsInPhone(word: "usually", translate: "usualmente"),
+                                                                                                    WordsInPhone(word: "later", translate: "más tarde"),
+                                                                                                    WordsInPhone(word: "previously", translate: "previamente"),
+                                                                                                    WordsInPhone(word: "recently", translate: "recientemente")])
+        
+        adverbsOfQuantity = WordsBankStruck(section: "Adverbios de cantidad", wordsArrayPhone: [WordsInPhone(word: "absolutely", translate: "absolutamente"),
+                                                                                          WordsInPhone(word: "almost", translate: "casi"),
+                                                                                          WordsInPhone(word: "barely", translate: "apenas"),
+                                                                                          WordsInPhone(word: "completely", translate: "completamente"),
+                                                                                          WordsInPhone(word: "deeply", translate: "profundamente"),
+                                                                                          WordsInPhone(word: "enough", translate: "suficiente"),
+                                                                                          WordsInPhone(word: "extremely", translate: "extremadamente"),
+                                                                                          WordsInPhone(word: "fully", translate: "totalmente"),
+                                                                                          WordsInPhone(word: "less", translate: "menos"),
+                                                                                          WordsInPhone(word: "most", translate: "la mayoría"),
+                                                                                          WordsInPhone(word: "much", translate: "mucho"),
+                                                                                          WordsInPhone(word: "positively", translate: "positivamente"),
+                                                                                          WordsInPhone(word: "practically", translate: "prácticamente"),
+                                                                                          WordsInPhone(word: "somewhat", translate: "de alguna manera"),
+                                                                                          WordsInPhone(word: "too", translate: "demasiado")])
+        
+        
+        adverbsOfManner = WordsBankStruck(section: "Adverbios de moda", wordsArrayPhone: [WordsInPhone(word: "badly", translate: "mal"),
+                                                                                          WordsInPhone(word: "carefully", translate: "cuidadosamente"),
+                                                                                          WordsInPhone(word: "easily", translate: "fácilmente"),
+                                                                                          WordsInPhone(word: "fast", translate: "velozmente"),
+                                                                                          WordsInPhone(word: "friendly", translate: "amistosamente"),
+                                                                                          WordsInPhone(word: "happily", translate: "alegremente"),
+                                                                                          WordsInPhone(word: "heavily", translate: "considerablemente"),
+                                                                                          WordsInPhone(word: "kindly", translate: "amablemente"),
+                                                                                          WordsInPhone(word: "neatly", translate: "con esmero"),
+                                                                                          WordsInPhone(word: "nicely", translate: "cordialmente"),
+                                                                                          WordsInPhone(word: "politely", translate: "educadamente"),
+                                                                                          WordsInPhone(word: "quickly", translate: "rápidamente"),
+                                                                                          WordsInPhone(word: "quietly", translate: "silenciosamente"),
+                                                                                          WordsInPhone(word: "slowly", translate: "lentamente"),
+                                                                                          WordsInPhone(word: "suddenly", translate: "repentinamente")])
+        
+        
+        adverbsOfPlace = WordsBankStruck(section: "Adverbios de lugar", wordsArrayPhone: [WordsInPhone(word: "above", translate: "encima de"),
+                                                                                                WordsInPhone(word: "around", translate: "alrededor de"),
+                                                                                                WordsInPhone(word: "backward", translate: "hacia atrás"),
+                                                                                                WordsInPhone(word: "behind", translate: "detrás de"),
+                                                                                                WordsInPhone(word: "below", translate: "debajo de"),
+                                                                                                WordsInPhone(word: "between", translate: "entre"),
+                                                                                                WordsInPhone(word: "down", translate: "abajo"),
+                                                                                                WordsInPhone(word: "east", translate: "hacia el este"),
+                                                                                                WordsInPhone(word: "everywhere", translate: "en todos lados"),
+                                                                                                WordsInPhone(word: "far away", translate: "lejos"),
+                                                                                                WordsInPhone(word: "forward", translate: "hacia adelante"),
+                                                                                                WordsInPhone(word: "here", translate: "aquí"),
+                                                                                                WordsInPhone(word: "nearby", translate: "cerca"),
+                                                                                                WordsInPhone(word: "north", translate: "hacia el norte"),
+                                                                                                WordsInPhone(word: "up", translate: "hacia arriba")])
+        
         bank.append(SectionBank(seccion: "Partes del cuerpo", bankoWords: [partsOfTheBody,partsOfTheBody2]))
         bank.append(SectionBank(seccion: "Ropa y accesorios", bankoWords: [clothing,clothing2,clothing3]))
         bank.append(SectionBank(seccion: "Frutas y verduras", bankoWords: [fruits,fruits2,vegetables,vegetables2]))
@@ -451,6 +539,7 @@ class QuestionBank {
         bank.append(SectionBank(seccion: "Alimentos", bankoWords: [foods]))
         bank.append(SectionBank(seccion: "Animales", bankoWords: [animals,animals2,animals3,animals4]))
         bank.append(SectionBank(seccion: "Escuela", bankoWords: [school,school2,school3]))
+        bank.append(SectionBank(seccion: "Adverbios", bankoWords: [adverbsOfTime,adverbsOfFrequency,adverbsOfPlace,adverbsOfManner,adverbsOfQuantity]))
     }
 }
 
@@ -471,139 +560,6 @@ class QuestionBank {
  WordsInPhone(word: <#T##String#>, translate: <#T##String#>),
  WordsInPhone(word: <#T##String#>, translate: <#T##String#>)
 
- */
-
-/*
- adverbios de tiempo
- 
- hourly - una vez por hora/cada hora
- daily - diariamente
- nightly - cada noche
- weekly - semanalmente
- monthly - mensualmente
- annually - anualmente
- yearly - cada año
- before - antes
- already - ya
- now - ahora
- today - hoy
- tonight - esta noche
- tomorrow - mañana
- yesterday - ayer
- first - primero
- 
- next - enseguida
- since - desde entonces
- yet- ya/todavía
- still - aún
- soon - pronto
- just - sólo
- late - tarde
- earlier - más temprano
- */
-
-/*
- adbervios de frecuencia
- always - siempre
- daily - diariamente
- eventually -eventualmente
- frequently - frecuentemente
- generally - generalmente
- hardly ever - casi nunca
- infrequently - con poca frecuencia
- never - nunca
- normally - normalmente
- occasionally - ocasionalmente
- often - con frecuencia
- usually - usualmente
- later - más tarde
- previously - previamente
- recently - recientemente
- */
-
-/*
- adverbios de cantidad
- 
- absolutely - absolutamente
- almost - casi
- barely - apenas
- completely - completamente
- deeply - profundamente
- enough - suficiente
- extremely - extremadamente
- fully - totalmente
- hardly - dificilmente least - lo mínimo
- less - menos
- little - un poco/algo
- most - la mayoría
- much - mucho
- positively - positivamente
- practically - prácticamente
- 
- rather - bastante
- simply - simplemente
- so - tan
- somewhat - de alguna manera
- terribly - extremadamente/terriblemente
- too - demasiado
- utterly - completamente
- very - muy
- */
-
-/*
- adverbios de modo
- 
- abruptly - abruptamente
- angrily - furiosamente/con enojo
- badly - mal
- carefully - cuidadosamente
- easily - fácilmente
- fast - velozmente
- friendly - amistosamente
- gently - ligeramente/con cuidado
- happily - alegremente
- hard - fuerte
- heavily - considerablemente
- kindly - amablemente
- loudly - a todo volumen
- neatly - con esmero
- nicely - cordialmente
- 
- politely - educadamente
- quickly - rápidamente
- quietly - silenciosamente
- sadly - desafortunadamente/tristemente
- secretly - secretamente
- slowly - lentamente
- softly - suavemente
- suddenly - repentinamente
- well - adecuadamente
- */
-
-/*
- adverbios de lugar
- 
- above- encima de
- around - alrededor de
- backward - hacia atrás
- behind - detrás de
- below - debajo de
- between - entre
- down - abajo
- east - hacia el este
- everywhere - en todos lados
- far away - lejos
- forward - hacia adelante
- here - aquí
- miles apart - a millas de distancia (a kilómetros de distancia)
- nearby - cerca
- north - hacia el norte
- 
- outside - afuera
- south - hacia el sur
- there - allí
- up - hacia arriba
- west - hacia el oeste
  */
 
 /*
@@ -726,5 +682,4 @@ class QuestionBank {
  gélido: frosty
  glacial: icy
  */
-
 

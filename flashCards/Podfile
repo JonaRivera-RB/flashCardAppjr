@@ -9,5 +9,6 @@ pod 'SAConfettiView'
 pod 'IQKeyboardManagerSwift'
 pod 'Charts'
 pod 'SCLAlertView'
+
 end
 
