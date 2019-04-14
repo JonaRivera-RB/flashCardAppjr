@@ -9,6 +9,6 @@ pod 'SAConfettiView'
 pod 'IQKeyboardManagerSwift'
 pod 'Charts'
 pod 'SCLAlertView'
-pod 'Firebase/Core'
+pod 'Firebase/Auth'
 end
 
