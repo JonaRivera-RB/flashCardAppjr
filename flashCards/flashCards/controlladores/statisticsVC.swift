@@ -29,12 +29,12 @@ class statisticsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        linechartView.chartDescription?.text = "Your statistics"
-        linechartView.centerText = "My words"
+        linechartView.chartDescription?.text = "Tus estadisticas"
+        linechartView.centerText = "Mis palabras"
        
-        wordsSkip.label = "Skiped"
-        wordsCorrect.label = "Correct"
-        wordsIncorrect.label = "Incorrect"
+        wordsSkip.label = "Saltadas"
+        wordsCorrect.label = "Correctas"
+        wordsIncorrect.label = "Incorrectas"
         
        
         

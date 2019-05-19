@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 import AVFoundation
-
+import GoogleMobileAds
 class myGameVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var wordLbl: UILabel!
@@ -18,6 +18,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var viewMove: sombraVista!
     @IBOutlet weak var cargarViewGame: UIView!
     @IBOutlet weak var bocina: UIButton!
+    @IBOutlet weak var correctAnsweTxt: UILabel!
     
     //var words:[Words]!
     var wordsForLearn:[Words]!
@@ -33,12 +34,19 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     var puntos = 0
     
     //var wordsForLeard2=[Words]()
+    //anucios
+    @IBOutlet weak var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         print("grupo",selectedGroup2!.group!)
         super.viewDidLoad()
         answerTxt.delegate = self
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
+        //anuncios
+        bannerView.adUnitID = "ca-app-pub-5222742314105921/6585214830"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
     }
     
     //hacemos una peticion a la base de datos
@@ -57,7 +65,11 @@ class myGameVC: UIViewController, UITextFieldDelegate {
             if word.goal != word.goalCompletion {
                 temporalArray.append(word)
         }
-            wordsForLearn = temporalArray
+            if temporalArray.count != 0 {
+                wordsForLearn = temporalArray
+            }else {
+                dismiss(animated: true, completion: nil)
+            }
     }
     }
     
@@ -130,6 +142,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     //funcion para actualizar vistas, txt y botones cuando se pasa a la siguiente palabra
     func updateLbl() {
         answerTxt.text = ""
+        correctAnsweTxt.isHidden = true
         acepBtn.isEnabled = false
         acepBtn.alpha = 0.5
     }
@@ -140,9 +153,10 @@ class myGameVC: UIViewController, UITextFieldDelegate {
     }
     //funcion donde indica que el boton de regresar fue presionado
     //y mostramos una alerta
+    //let alert = UIAlertController(title: "Are you sure?", message: "If you exit of game, you will lose your progress.😰", preferredStyle: .alert)
     @IBAction func backBtnWasPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Are you sure?", message: "If you exit of game, you will lose your progress.😰", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let alert = UIAlertController(title: "Estas seguro?", message: "Si tu te sales del juego perderas todo tu progreso.😰", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
         let alertAction2 = UIAlertAction(title: "Ok", style: .default) { (alertAction2) in
             self.dismiss(animated: true, completion: nil)
         }
@@ -217,7 +231,12 @@ class myGameVC: UIViewController, UITextFieldDelegate {
         }
         
         if answerTxt.text != "" {
-            if correctAnswer == answerTxt.text
+            var correctAnswerC = correctAnswer.replacingOccurrences(of: " ", with: "")
+            var answerC = answerTxt.text!.replacingOccurrences(of: " ", with: "")
+            correctAnswerC = correctAnswerC.folding(options: .diacriticInsensitive, locale: .current)
+            answerC = answerC.folding(options: .diacriticInsensitive, locale: .current)
+            
+            if correctAnswerC.lowercased() == answerC.lowercased()
             {
                 self.bocina.isHidden = true
                 setProgress(atNumber: self.numberWord)
@@ -226,7 +245,7 @@ class myGameVC: UIViewController, UITextFieldDelegate {
                 print("correct")
                 wordLbl.textColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
                 viewMove.backgroundColor = #colorLiteral(red: 0, green: 0.5898008943, blue: 1, alpha: 1)
-                wordLbl.text = "correct🥳!"
+                wordLbl.text = "correcto🥳!"
                 lado = true
                 puntos += 1
             }
@@ -237,7 +256,9 @@ class myGameVC: UIViewController, UITextFieldDelegate {
                 transitionRight()
                 wordLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 viewMove.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
-                wordLbl.text = "incorrect😞!"
+                wordLbl.text = "incorrecto😞!"
+                correctAnsweTxt.isHidden = false
+                correctAnsweTxt.text = correctAnswer
                 lado = false
             }
         }
@@ -281,23 +302,4 @@ extension myGameVC {
             debugPrint("Could not set progress:\(error.localizedDescription)")
         }
     }
-    
-    /*
-    //funcion para obtener los datos de la base de datos
-    func fetch(completion: (_ completion: Bool) ->()) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        let fetchRequest = NSFetchRequest<Words>(entityName: "Words")
-        let predicate = NSPredicate(format: "wordsRelation.group MATCHES %@", selectedGroup2!.group!)
-        fetchRequest.predicate = predicate
-        do {
-            words = try managedContext.fetch(fetchRequest)
-            
-            print("successfully fetched data")
-            completion(true)
-        } catch {
-            debugPrint("could not fetch: \(error.localizedDescription)")
-            completion(false)
-        }
-    }
- */
 }

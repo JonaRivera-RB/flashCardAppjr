@@ -19,8 +19,10 @@ class vistaBotones: UIButton {
     }
     func vistaBotones(){
         layer.cornerRadius = 22.0
-        layer.shadowRadius = 2.0
-        layer.shadowColor = UIColor.black.withAlphaComponent(1).cgColor
+       // layer.shadowRadius = 2.0
+        //layer.shadowColor = UIColor.black.withAlphaComponent(1).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 0)
-        layer.shadowOpacity = 0.5    }
+        layer.shadowOpacity = 0.2
+        
+    }
 }

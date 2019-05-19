@@ -8,6 +8,7 @@
 
 import UIKit
 import SCLAlertView
+import GoogleMobileAds
 
 class addwordVC: UIViewController {
     
@@ -18,8 +19,22 @@ class addwordVC: UIViewController {
     var goal = 5
     var grupoSeleccionado:Groups!
     
+    //anuncios
+    @IBOutlet weak var bannerView: GADBannerView!
+    var interstitial: GADInterstitial!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        //anuncios
+        bannerView.adUnitID = "ca-app-pub-5222742314105921/6585214830"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        
+        interstitial = GADInterstitial(adUnitID: "ca-app-pub-5222742314105921/4884834943")
+        let request = GADRequest()
+        interstitial.load(request)
+        
+        
         goalLbl.text = String(goal)
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
     
@@ -43,7 +58,14 @@ class addwordVC: UIViewController {
             }
         }
         else {
-            SCLAlertView().showWarning("Incomplete data", subTitle: "Apparently your data is incomplete 🤔")
+            //showWarning("Incomplete data", subTitle: "Apparently your data is incomplete 🤔")
+            if interstitial.isReady {
+                interstitial.present(fromRootViewController: self)
+            } else {
+                print("Ad wasn't ready")
+            }
+            SCLAlertView().showWarning("Datos incompletos", subTitle: "Alparecer tus datos estan incompletos 🤔")
+            
         }
     }
     

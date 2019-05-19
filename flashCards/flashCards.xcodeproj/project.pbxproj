@@ -8,13 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		131423DE21137EDE00A041CE /* myGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131423DD21137EDE00A041CE /* myGameVC.swift */; };
+		1317504421DDC1D500659C31 /* UITableView+indexPathForView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1317504321DDC1D500659C31 /* UITableView+indexPathForView.swift */; };
 		133D8734214F4DD200728394 /* statisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 133D8733214F4DD200728394 /* statisticsVC.swift */; };
 		134A737121310F8C008629E5 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A737021310F8C008629E5 /* extensions.swift */; };
 		134A737521311538008629E5 /* groupsColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 134A737421311538008629E5 /* groupsColor.swift */; };
+		13630D5E21C9525C009F9DB1 /* gameWordsInPhoneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13630D5D21C9525C009F9DB1 /* gameWordsInPhoneVC.swift */; };
+		13630D6021C96A77009F9DB1 /* IndexSectionAndStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13630D5F21C96A77009F9DB1 /* IndexSectionAndStatus.swift */; };
+		13814B2221C5B597004C4BA8 /* WordsLoadInTheAppVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13814B2121C5B597004C4BA8 /* WordsLoadInTheAppVC.swift */; };
+		13814B2421C5B9A7004C4BA8 /* WordInTheAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13814B2321C5B9A7004C4BA8 /* WordInTheAppCell.swift */; };
+		13814B2621C766FD004C4BA8 /* VistaCardforWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13814B2521C766FD004C4BA8 /* VistaCardforWord.swift */; };
+		13814B2821C76F5B004C4BA8 /* IndexAndStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13814B2721C76F5B004C4BA8 /* IndexAndStatus.swift */; };
 		138234F021475EBF00D5EACE /* scoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138234EF21475EBF00D5EACE /* scoreVC.swift */; };
+		1392837621BE11DE00FF8BCB /* GroupInTheAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392837521BE11DE00FF8BCB /* GroupInTheAppCell.swift */; };
+		1392837821BE137500FF8BCB /* categoriesInTheAppVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1392837721BE137500FF8BCB /* categoriesInTheAppVC.swift */; };
+		13A0F10221C1817A0042AC1B /* WordsInPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A0F10121C1817A0042AC1B /* WordsInPhone.swift */; };
+		13A0F10421C181C80042AC1B /* SectionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A0F10321C181C80042AC1B /* SectionBank.swift */; };
+		13A0F10621C1826A0042AC1B /* QuestionBank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A0F10521C1826A0042AC1B /* QuestionBank.swift */; };
+		13A382BC21B48CC500FDA319 /* VistaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A382BB21B48CC500FDA319 /* VistaCard.swift */; };
 		13AEA998211006B50048696F /* addwordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AEA997211006B50048696F /* addwordVC.swift */; };
-		13BA8EC7210EA85B00FBEAF5 /* wordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA8EC6210EA85B00FBEAF5 /* wordCell.swift */; };
-		13BAF97C2125A8EE00ED7A8E /* groupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAF97B2125A8EE00ED7A8E /* groupCell.swift */; };
+		13BA8EC7210EA85B00FBEAF5 /* WordCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BA8EC6210EA85B00FBEAF5 /* WordCell.swift */; };
+		13BAF97C2125A8EE00ED7A8E /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BAF97B2125A8EE00ED7A8E /* GroupCell.swift */; };
 		13E58328218D3CE000D5275E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13E58327218D3CDF00D5275E /* Assets.xcassets */; };
 		13F196ED210A3DEE0033EF05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F196EC210A3DEE0033EF05 /* AppDelegate.swift */; };
 		13F196EF210A3DEE0033EF05 /* mainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F196EE210A3DEE0033EF05 /* mainController.swift */; };
@@ -27,18 +40,32 @@
 		13F1970A210A8A150033EF05 /* myWordsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F19709210A8A150033EF05 /* myWordsVC.swift */; };
 		13F7E61221253DD200C68CA6 /* myGroupsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F7E61121253DD200C68CA6 /* myGroupsVC.swift */; };
 		13FE4456218F8F1B00810BB6 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13FE4455218F8F1B00810BB6 /* AboutViewController.swift */; };
+		13FE4458218FFA9600810BB6 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FE4457218FFA9600810BB6 /* GoogleMobileAds.framework */; };
 		C265B405851B7E8854858F52 /* Pods_flashCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FCF9AC7F30D1E5687A42C17 /* Pods_flashCards.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		131423DD21137EDE00A041CE /* myGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myGameVC.swift; sourceTree = "<group>"; };
+		1317504321DDC1D500659C31 /* UITableView+indexPathForView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+indexPathForView.swift"; sourceTree = "<group>"; };
 		133D8733214F4DD200728394 /* statisticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statisticsVC.swift; sourceTree = "<group>"; };
 		134A737021310F8C008629E5 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		134A737421311538008629E5 /* groupsColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groupsColor.swift; sourceTree = "<group>"; };
+		13630D5D21C9525C009F9DB1 /* gameWordsInPhoneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameWordsInPhoneVC.swift; sourceTree = "<group>"; };
+		13630D5F21C96A77009F9DB1 /* IndexSectionAndStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexSectionAndStatus.swift; sourceTree = "<group>"; };
+		13814B2121C5B597004C4BA8 /* WordsLoadInTheAppVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsLoadInTheAppVC.swift; sourceTree = "<group>"; };
+		13814B2321C5B9A7004C4BA8 /* WordInTheAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordInTheAppCell.swift; sourceTree = "<group>"; };
+		13814B2521C766FD004C4BA8 /* VistaCardforWord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaCardforWord.swift; sourceTree = "<group>"; };
+		13814B2721C76F5B004C4BA8 /* IndexAndStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexAndStatus.swift; sourceTree = "<group>"; };
 		138234EF21475EBF00D5EACE /* scoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = scoreVC.swift; sourceTree = "<group>"; };
+		1392837521BE11DE00FF8BCB /* GroupInTheAppCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupInTheAppCell.swift; sourceTree = "<group>"; };
+		1392837721BE137500FF8BCB /* categoriesInTheAppVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categoriesInTheAppVC.swift; sourceTree = "<group>"; };
+		13A0F10121C1817A0042AC1B /* WordsInPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordsInPhone.swift; sourceTree = "<group>"; };
+		13A0F10321C181C80042AC1B /* SectionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionBank.swift; sourceTree = "<group>"; };
+		13A0F10521C1826A0042AC1B /* QuestionBank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionBank.swift; sourceTree = "<group>"; };
+		13A382BB21B48CC500FDA319 /* VistaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VistaCard.swift; sourceTree = "<group>"; };
 		13AEA997211006B50048696F /* addwordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addwordVC.swift; sourceTree = "<group>"; };
-		13BA8EC6210EA85B00FBEAF5 /* wordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordCell.swift; sourceTree = "<group>"; };
-		13BAF97B2125A8EE00ED7A8E /* groupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = groupCell.swift; sourceTree = "<group>"; };
+		13BA8EC6210EA85B00FBEAF5 /* WordCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordCell.swift; sourceTree = "<group>"; };
+		13BAF97B2125A8EE00ED7A8E /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		13E58327218D3CDF00D5275E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		13F196E9210A3DED0033EF05 /* flashCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flashCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13F196EC210A3DEE0033EF05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +80,7 @@
 		13F19709210A8A150033EF05 /* myWordsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myWordsVC.swift; sourceTree = "<group>"; };
 		13F7E61121253DD200C68CA6 /* myGroupsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myGroupsVC.swift; sourceTree = "<group>"; };
 		13FE4455218F8F1B00810BB6 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		13FE4457218FFA9600810BB6 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 		2EB8D8FE548A4A96FAF4F675 /* Pods-flashCards.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashCards.release.xcconfig"; path = "Pods/Target Support Files/Pods-flashCards/Pods-flashCards.release.xcconfig"; sourceTree = "<group>"; };
 		6FCF9AC7F30D1E5687A42C17 /* Pods_flashCards.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flashCards.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B91E80B9E493E38F2BC7E677 /* Pods-flashCards.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flashCards.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flashCards/Pods-flashCards.debug.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13FE4458218FFA9600810BB6 /* GoogleMobileAds.framework in Frameworks */,
 				C265B405851B7E8854858F52 /* Pods_flashCards.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -70,11 +99,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1392837A21BE2F8C00FF8BCB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				13A0F10121C1817A0042AC1B /* WordsInPhone.swift */,
+				13A0F10321C181C80042AC1B /* SectionBank.swift */,
+				13A0F10521C1826A0042AC1B /* QuestionBank.swift */,
+				13814B2721C76F5B004C4BA8 /* IndexAndStatus.swift */,
+				13630D5F21C96A77009F9DB1 /* IndexSectionAndStatus.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		13BA8EC4210EA82B00FBEAF5 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				13BA8EC6210EA85B00FBEAF5 /* wordCell.swift */,
-				13BAF97B2125A8EE00ED7A8E /* groupCell.swift */,
+				13BA8EC6210EA85B00FBEAF5 /* WordCell.swift */,
+				13BAF97B2125A8EE00ED7A8E /* GroupCell.swift */,
+				1392837521BE11DE00FF8BCB /* GroupInTheAppCell.swift */,
+				13814B2321C5B9A7004C4BA8 /* WordInTheAppCell.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -110,12 +153,15 @@
 		13F196EB210A3DED0033EF05 /* flashCards */ = {
 			isa = PBXGroup;
 			children = (
+				1392837A21BE2F8C00FF8BCB /* Models */,
+				13FE4457218FFA9600810BB6 /* GoogleMobileAds.framework */,
 				13BB3A3121310F2A00E60CF9 /* data */,
 				13BA8EC4210EA82B00FBEAF5 /* views */,
 				13F19702210A4AAB0033EF05 /* design */,
 				13F19701210A4AA00033EF05 /* controlladores */,
 				13F196EC210A3DEE0033EF05 /* AppDelegate.swift */,
 				13E58327218D3CDF00D5275E /* Assets.xcassets */,
+				1317504321DDC1D500659C31 /* UITableView+indexPathForView.swift */,
 				13F196F0210A3DEE0033EF05 /* Main.storyboard */,
 				13F196F8210A3DEF0033EF05 /* LaunchScreen.storyboard */,
 				13F196FB210A3DEF0033EF05 /* Info.plist */,
@@ -134,6 +180,9 @@
 				138234EF21475EBF00D5EACE /* scoreVC.swift */,
 				133D8733214F4DD200728394 /* statisticsVC.swift */,
 				13FE4455218F8F1B00810BB6 /* AboutViewController.swift */,
+				1392837721BE137500FF8BCB /* categoriesInTheAppVC.swift */,
+				13814B2121C5B597004C4BA8 /* WordsLoadInTheAppVC.swift */,
+				13630D5D21C9525C009F9DB1 /* gameWordsInPhoneVC.swift */,
 			);
 			path = controlladores;
 			sourceTree = "<group>";
@@ -144,6 +193,8 @@
 				13F19703210A4ACA0033EF05 /* sombraVista.swift */,
 				13F19705210A4C630033EF05 /* vistaBoton.swift */,
 				13F19707210A4FB20033EF05 /* vistaBotones.swift */,
+				13A382BB21B48CC500FDA319 /* VistaCard.swift */,
+				13814B2521C766FD004C4BA8 /* VistaCardforWord.swift */,
 			);
 			path = design;
 			sourceTree = "<group>";
@@ -284,22 +335,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13814B2621C766FD004C4BA8 /* VistaCardforWord.swift in Sources */,
 				13F19708210A4FB20033EF05 /* vistaBotones.swift in Sources */,
 				133D8734214F4DD200728394 /* statisticsVC.swift in Sources */,
 				13AEA998211006B50048696F /* addwordVC.swift in Sources */,
 				13F7E61221253DD200C68CA6 /* myGroupsVC.swift in Sources */,
 				13F196EF210A3DEE0033EF05 /* mainController.swift in Sources */,
+				13A382BC21B48CC500FDA319 /* VistaCard.swift in Sources */,
+				13814B2421C5B9A7004C4BA8 /* WordInTheAppCell.swift in Sources */,
 				13F196F5210A3DEE0033EF05 /* flashCards.xcdatamodeld in Sources */,
 				131423DE21137EDE00A041CE /* myGameVC.swift in Sources */,
+				1317504421DDC1D500659C31 /* UITableView+indexPathForView.swift in Sources */,
+				13814B2821C76F5B004C4BA8 /* IndexAndStatus.swift in Sources */,
+				1392837621BE11DE00FF8BCB /* GroupInTheAppCell.swift in Sources */,
+				13630D5E21C9525C009F9DB1 /* gameWordsInPhoneVC.swift in Sources */,
 				13F19706210A4C630033EF05 /* vistaBoton.swift in Sources */,
-				13BAF97C2125A8EE00ED7A8E /* groupCell.swift in Sources */,
+				13BAF97C2125A8EE00ED7A8E /* GroupCell.swift in Sources */,
 				13FE4456218F8F1B00810BB6 /* AboutViewController.swift in Sources */,
+				13630D6021C96A77009F9DB1 /* IndexSectionAndStatus.swift in Sources */,
 				134A737521311538008629E5 /* groupsColor.swift in Sources */,
+				1392837821BE137500FF8BCB /* categoriesInTheAppVC.swift in Sources */,
 				13F1970A210A8A150033EF05 /* myWordsVC.swift in Sources */,
-				13BA8EC7210EA85B00FBEAF5 /* wordCell.swift in Sources */,
+				13BA8EC7210EA85B00FBEAF5 /* WordCell.swift in Sources */,
+				13814B2221C5B597004C4BA8 /* WordsLoadInTheAppVC.swift in Sources */,
 				138234F021475EBF00D5EACE /* scoreVC.swift in Sources */,
+				13A0F10621C1826A0042AC1B /* QuestionBank.swift in Sources */,
+				13A0F10221C1817A0042AC1B /* WordsInPhone.swift in Sources */,
 				13F196ED210A3DEE0033EF05 /* AppDelegate.swift in Sources */,
 				13F19704210A4ACA0033EF05 /* sombraVista.swift in Sources */,
+				13A0F10421C181C80042AC1B /* SectionBank.swift in Sources */,
 				134A737121310F8C008629E5 /* extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -448,6 +512,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 967D57A66Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/flashCards",
+				);
 				INFOPLIST_FILE = flashCards/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -470,6 +538,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 967D57A66Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/flashCards",
+				);
 				INFOPLIST_FILE = flashCards/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (

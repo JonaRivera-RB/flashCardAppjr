@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SAConfettiView
+import GoogleMobileAds
 
 class scoreVC: UIViewController {
     //outlet necesarios
@@ -39,10 +40,18 @@ class scoreVC: UIViewController {
     //arreglo para traer la cantidad de palabras
     var totalWords = [Words]()
     
+    //anuncios
+    @IBOutlet weak var bannerView: GADBannerView!
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchCoreDataObjects()
         getmyData()
+        
+        //anuncios
+        bannerView.adUnitID = "ca-app-pub-5222742314105921/6585214830"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
+        
     }
     
     //cuando la vista aparezca y transcurra un segundo cargamos la animacion
@@ -105,8 +114,8 @@ class scoreVC: UIViewController {
         correctAnswereLbl.text = String(correct)
         incorrectAnswerLbl.text = String(incorrect)
         learnedLbl.text = String(learned)
-        level.text = String("level \(mylevel)")
-        yourPoints.text = String("\(startValue) / \(levelPts) Points")
+        level.text = String("Nivel \(mylevel)")
+        yourPoints.text = String("\(startValue) / \(levelPts) Puntos")
         for constraint in self.progressLevel.constraints {
             if constraint.identifier == "levelwidth" {
                 constraint.constant = (self.view.frame.size.width * 0.80)/CGFloat(self.levelPts) * CGFloat(self.startValue)
@@ -118,7 +127,7 @@ class scoreVC: UIViewController {
     //si el identificador del constrainr es igual a barWidht
     //entonces cambio el valor
     @objc func handleUpdate() {
-        yourPoints.text = String("\(startValue) / \(levelPts) Points")
+        yourPoints.text = String("\(startValue) / \(levelPts) Puntos")
         for constraint in self.progressLevel.constraints {
             if constraint.identifier == "levelwidth" {
                  constraint.constant = (self.view.frame.size.width * 0.80)/CGFloat(self.levelPts) * CGFloat(self.startValue)
