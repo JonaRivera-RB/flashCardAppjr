@@ -5,4 +5,11 @@ FlashCard MemoryCard es una aplicación para memorizar palabras, las cuales cuen
 La aplicación esta disponible en la AppStore y ahora es OpenSource.
 https://itunes.apple.com/in/app/flashcard-memorycard/id1440696818?mt=8
 
+
+![](https://github.com/Jonyriveradeveloper/flashCardAppjr/blob/master/Simulator%20Screen%20Shot%20-%20iPhone%207%20-%202018-11-04%20at%2023.30.24.png)
+
+![](https://github.com/Jonyriveradeveloper/flashCardAppjr/blob/master/Simulator%20Screen%20Shot%20-%20iPhone%207%20-%202018-11-04%20at%2023.30.28.png)
+
+![](https://github.com/Jonyriveradeveloper/flashCardAppjr/blob/master/Simulator%20Screen%20Shot%20-%20iPhone%207%20-%202018-11-04%20at%2023.31.06.png)
+
 ![](https://github.com/Jonyriveradeveloper/flashCardAppjr/blob/master/Simulator%20Screen%20Shot%20-%20iPhone%207%20-%202018-11-04%20at%2023.29.52.png)
